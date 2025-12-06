@@ -1,0 +1,230 @@
+<mxfile host="Electron" modified="2024-04-24T18:57:30.979Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="Y8Ou1mD2KYiGApcThDgM" version="24.2.5" type="device">
+  <diagram name="Page-1" id="VKYj-lJJJnIAyfPZs3zv">
+    <mxGraphModel dx="1140" dy="1022" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="nQnei3ESya38N2-AkKpt-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.008;entryY=0.134;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-71" target="nQnei3ESya38N2-AkKpt-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="120" as="targetPoint" />
+            <mxPoint x="80" y="175" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-2" value="Vnes na informacii" style="swimlane;fontStyle=4;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;rounded=1;absoluteArcSize=1;arcSize=50;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="70" y="40" width="140" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-2">
+          <mxGeometry y="60" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-4" value="izbor" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-2">
+          <mxGeometry y="68" width="140" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-5" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-2">
+          <mxGeometry y="93" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-6" value="entry/ vnes poceten i kraen datum, grad, br na korisnici i tip na rezervacija&lt;div&gt;exit/ izbor&lt;/div&gt;" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-2">
+          <mxGeometry y="101" width="140" height="119" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-7" value="Prikaz na ponudi" style="swimlane;fontStyle=4;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;rounded=1;absoluteArcSize=1;arcSize=50;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="70" y="590" width="140" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-8" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-7">
+          <mxGeometry y="60" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-9" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-7">
+          <mxGeometry y="68" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-10" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;do/ proveri dostapni&lt;div&gt;exit/ pecati lista na ponudi i ceni&lt;/div&gt;" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-7">
+          <mxGeometry y="76" width="140" height="139" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-6" target="nQnei3ESya38N2-AkKpt-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="345" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1.007;exitY=0.411;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.001;entryY=0.104;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-30" target="nQnei3ESya38N2-AkKpt-94">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1040" y="550.7500000000001" as="targetPoint" />
+            <mxPoint x="885" y="370.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-18" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;&amp;nbsp; &amp;nbsp; korisnikot pritisnal rezervacija&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="530" y="795" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-19" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;korisnikot izbral hotelsko smestuvanje&lt;/font&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry y="390" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-21" target="nQnei3ESya38N2-AkKpt-26">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="457" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-21" value="Cekanje za vnes na izbor" style="swimlane;fontStyle=4;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;rounded=1;absoluteArcSize=1;arcSize=50;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="240" y="615.5" width="140" height="126" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-22" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-21">
+          <mxGeometry y="60" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-23" value="izborHotel" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-21">
+          <mxGeometry y="68" width="140" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-24" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-21">
+          <mxGeometry y="93" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-25" value="entry/vnes izborHotel" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-21">
+          <mxGeometry y="101" width="140" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-26" value="Pecatenje info" style="swimlane;fontStyle=4;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;rounded=1;absoluteArcSize=1;arcSize=50;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="410" y="615.5" width="140" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-27" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-26">
+          <mxGeometry y="60" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-28" value="izborHotel" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-26">
+          <mxGeometry y="68" width="140" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-29" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-26">
+          <mxGeometry y="93" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-30" value="&lt;div&gt;entry/prikaz na kopce za rezervacija&lt;/div&gt;exit/pecatenje detalni informacii za hotel" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-26">
+          <mxGeometry y="101" width="140" height="149" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-39" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;korisnikot izbral prevoz&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="210" y="195" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-10" target="nQnei3ESya38N2-AkKpt-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-42" target="nQnei3ESya38N2-AkKpt-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-42" value="Cekanje za vnes na izbor&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=4;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;rounded=1;absoluteArcSize=1;arcSize=50;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="490" y="55" width="140" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-43" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-42">
+          <mxGeometry y="60" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-44" value="izborPrevoz" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-42">
+          <mxGeometry y="68" width="140" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-45" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-42">
+          <mxGeometry y="93" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-46" value="entry/ vnes izborPrevoz" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-42">
+          <mxGeometry y="101" width="140" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-79" target="nQnei3ESya38N2-AkKpt-44">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="85.51351351351354" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-48" value="Popolnuvane forma" style="swimlane;fontStyle=4;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;rounded=1;absoluteArcSize=1;arcSize=50;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="660" y="73" width="150" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-49" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-48">
+          <mxGeometry y="60" width="150" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-50" value="patnici-info" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-48">
+          <mxGeometry y="68" width="150" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-51" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-48">
+          <mxGeometry y="93" width="150" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-52" value="&lt;div&gt;entry/ vnes na opsti info za patnicite (ime, prezime, datum raganje)&lt;/div&gt;&lt;div&gt;do/ proveri slobodni mesta&lt;/div&gt;&lt;div&gt;exit/ prikaz na slobodni mesta&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-48">
+          <mxGeometry y="101" width="150" height="159" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-54" target="nQnei3ESya38N2-AkKpt-69">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1310" y="1830" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-54" value="Pravenje rezervacija" style="swimlane;fontStyle=4;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;rounded=1;absoluteArcSize=1;arcSize=50;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="640" y="430" width="140" height="101" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-55" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-54">
+          <mxGeometry y="60" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-57" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-54">
+          <mxGeometry y="68" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-58" value="/exit isprakanje poraka" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-54">
+          <mxGeometry y="76" width="140" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-59" value="Vnes na karticka" style="swimlane;fontStyle=4;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;rounded=1;absoluteArcSize=1;arcSize=50;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="405" y="340" width="150" height="205" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-60" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-59">
+          <mxGeometry y="60" width="150" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-62" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-59">
+          <mxGeometry y="68" width="150" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-65" value="entry/vnes na broj&lt;div&gt;do/proveri karticka&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-59">
+          <mxGeometry y="76" width="150" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-52" target="nQnei3ESya38N2-AkKpt-65">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1200" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-68" value="&lt;div&gt;&lt;div&gt;plakanje e uspesno&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="590" y="360" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-69" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#ff0000;" vertex="1" parent="1">
+          <mxGeometry x="800" y="585" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-71" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#ff0000;" vertex="1" parent="1">
+          <mxGeometry y="145" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-79" value="Prikaz na ponudi" style="swimlane;fontStyle=4;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;rounded=1;absoluteArcSize=1;arcSize=50;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="310" y="65" width="140" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-82" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-79">
+          <mxGeometry y="60" width="140" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-84" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-79">
+          <mxGeometry y="70" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-85" value="do/proveri dostapni ponudi&lt;div&gt;exit/ pecati lista na ponudi i ceni&lt;/div&gt;" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-79">
+          <mxGeometry y="78" width="140" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-88" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-6" target="nQnei3ESya38N2-AkKpt-85">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-89" value="brSlobodniMesta &amp;gt;&lt;span style=&quot;background-color: initial;&quot;&gt;= brPatnici&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="260" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-90" value="Popolnuvane forma" style="swimlane;fontStyle=4;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;rounded=1;absoluteArcSize=1;arcSize=50;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="660" y="680" width="150" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-91" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-90">
+          <mxGeometry y="60" width="150" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-92" value="patnici-info" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-90">
+          <mxGeometry y="68" width="150" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-93" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="nQnei3ESya38N2-AkKpt-90">
+          <mxGeometry y="93" width="150" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-94" value="&lt;div&gt;entry/ vnes na opsti info za patnicite (ime, prezime, datum raganje)&lt;/div&gt;&lt;div&gt;do/ proveri slobodni mesta&lt;/div&gt;&lt;div&gt;exit/ prikaz na slobodni mesta&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="fillColor=none;strokeColor=none;align=left;verticalAlign=middle;spacingLeft=5;whiteSpace=wrap;html=1;" vertex="1" parent="nQnei3ESya38N2-AkKpt-90">
+          <mxGeometry y="101" width="150" height="159" as="geometry" />
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-65" target="nQnei3ESya38N2-AkKpt-54">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1340" y="780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nQnei3ESya38N2-AkKpt-98" value="" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="nQnei3ESya38N2-AkKpt-90" target="nQnei3ESya38N2-AkKpt-65">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="660" y="630" as="sourcePoint" />
+            <mxPoint x="680" y="590" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="735" y="590" />
+              <mxPoint x="480" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

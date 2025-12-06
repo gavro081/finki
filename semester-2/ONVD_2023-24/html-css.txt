@@ -1,0 +1,265 @@
+html
+
+<b> some text </b> ----> bold
+<i> some text </i> ----> italic
+<strong> </strong> boldira 
+<em></em> - emphasise pravi italics ama i screen reader so pogolem akcent ke cita
+
+<blockquote cite="https://link-quote"> </blockquote> koga citiras neso i sakas da go vovleces
+<q> </q> samo quoteot go stava u navodnici 
+<cite></cite> za literatura
+<dfn></dfn> defince instance na nekoj nov termin
+<abbr title="so znaci"></abbr> abbreviation pr d-r m-r
+<acronym title="so znaci"><acronym> 
+
+<ins></ins> neso novo ako stavime, go podvlekuva
+<del></del> neso ako izbriseme, go skrtnuva
+<s></s> neso so treba da se skrtne ama ne da se izbrise
+
+kaj <ul> i <ol> type circles, squares, diamonds ...
+<dl></dl> definition list
+	<dt> term being defined 
+	<dd> term definition
+
+p { color: red; } 
+p - selector
+color - property
+red - value
+
+<header> top of page
+<nav> navigation - najcesto ima linkovi i/ili sodrzina ...
+<article> konkreten del od stranata
+<section> se koristi za nekakva hierarhija
+<aside> nekoi dopolnitelni informacii
+<footer> bottom of page
+
+../filename parent folder
+../../filename grandparent folder
+/folder/filename child
+/filename sibling - same folder
+
+<a href="mailto:a@a.com">prati mail</a>
+
+<img src="filename.jpg" alt="Explanation of image goes here" />
+.jpg poise boi / .gif, .png koga pomalce boi ili prodzirnost
+
+<figure> 
+	<img src="ex.jpg" alt="example">
+	<figcaption> 
+		this will be desplayed below the image 
+	</figcaption>
+</figure>
+
+<audio src="ex.mp3"></audio>  (supported mp3, wav, ogg)
+	attributes: autolplay, controls, loop, preload ...
+<video src="ex.mp4"></video>  (supported mp4, ogv)
+	attributes: autoplay, controls, loop, preload, poster...
+
+<table>*
+<th> - table heading <th scope="row/col"> 
+<tr> - table row*
+<td> - table data*
+* zadolzitelni
+
+colspan="n", rowspan="n"
+
+<caption> naslov na tabela
+<thead> oznacuva pocetok - header
+<tbody> glavna soddrzina - body
+<tfoot> oznacuva kraj - footer
+
+width, cellpading, cellspacing - site vrednosti vo navodnici
+border, bgcolor - site vrednosti vo navodnici
+
+border-collapse: collapse / separate / inherit
+border-spacing: x y;  x - hor. spacing, y - vert. spacing
+(raboti samo so border-collapse: seperate) - prostor megu borders
+
+<form action="url-kaj-so-idat-informacii" method="get/post">
+
+<input type="text/password" name="x" maxlength="n" size="x" />
+<textarea> </textarea>
+<input type="radio / checkbox"> 
+	ima atribut checked="checked" ako sakas odnapred da e stiklirano
+	prima name i value za da znae sto da praka na serverot
+
+<select name="">            opagacko meni
+	<option value=""> </option> 
+	<option value=""> </option>
+
+<input type="file" name=""/>
+<input type"submit"/> za isprakanje info
+<input type="image" src.. width.. />
+<input type="hidden"/> e skrieno
+
+<input type="date"/>
+
+<label>
+	1. <label> tekst: <input ../> </label>
+	2. <label for="id / klasa"> tekst: </label>
+<fieldset> grupira forms
+<legend> kako caption so kazuva za so e formata
+<input type.. disabled/> onevozmozuva da se vnesuvaat informacii
+<input type.. placeholder="tekst pred userot da pocne da pisuva"
+
+text-decoration:    prima overline, underline, line-through..
+
+selector specificity 
+ID count - class count - type count
+	
+1 em = element font size (3em = 3xfontSize)
+
+inline elementi ne primaat vertical margins
+
+margin: x   site 4 strani
+margin: x y gore-dole levo-desno
+margin: x y z v gore desno dole levo
+
+border: width style color
+style - dotted, dashed, solid, double, inset, outset, ridge, none
+border-radius: x site 4 agli
+	       x y  gore-levo dole-desno
+	       x y z v gore-levo gore-desno dole-desno dole-levo
+border-left-color
+border-right-style
+border-bottom-width ....
+	
+margini ne se sobiraat od gore i dole tuku pogolemata ostanuva
+
+
+position: static, relative, absolute, fixed
+top: 0 znaci zalepeno najgore
+
+static - default vrednost
+
+relative - raboti so left right top bottom i vrednost vo px slicno na margin
+
+fixed - koga se skrola e na isto mesto
+
+absolute - relativno so najblizok roditel so ima vrednost razlicna od static
+
+
+: left, right butka element najlevo/desno so moze, ako se poise gi stava eden do drug
+
+clear: left, right, both 
+
+ako koristime float MORA i width
+ako se sudrat dva elementi so ist float i za edniot nema mesto 
+ide nadole
+
+vrvot na floating element mora da e vo blokot
+z-index: 1 2 3 slicno so send to back, send to front samo so poise opcii
+
+ / / Helvetica - apple font
+
+
+---------------------------------
+<a href="mailto:a@a.com?subject=word1%20word2%0Anewline&body=...>Email this</a>
+? seperator email-adress?subject=..?body=..
+%20 space
+%0A new line
+
+
+hsl hue  saturation lightness
+hsl(1-360, 0-100%, 0-100%)
+
+article h2 - site headings2 vnatre vo nekoj article 
+article > h2 - samo direct child na article
+h2 ~ p - site paragrafi koi imaat sibling h2 nekade pred niv
+h2 + p - site paragrafi koi imaat sibling h2 odma pred niv
+
+a[target] - site anchor koi imaat attribute target
+a[href="https://google.com/"] - site koi go imaat konkretno ovoj link
+a[href*="login"] = site koi nekade vo href imaat login 
+a[href^="https://"] = site koi POCNUVAAT so dadeniot string
+a[href$=".pdf"] = site koi ZAVRSUVAAT so dadeniot string
+a[rel~="tag"] = ??? ako ima barem 2 vrednosti od koi sto eden e tag ??
+a[lang|="en"] - ako ima crta mesto space i pocnuva so en ??
+
+psevdo klasa / pseudo-class
+a:link - anchor so ne e otvoren 
+a:visited - anchor so e veke otvoren
+a:hover - koga so kursor preku element
+a:active - koga element e kliknat
+
+input:enabled - obicen input
+input:disabled -input so ima staveno attribute disabled na nego
+input:checked - koga e stikliran
+input:indeterminate - koga ne e ni selektiran ni otselektiran
+
+li:first-child - targetira prv element t.e. child
+li:last-child - targetira posleden element t.e. child
+div:only-child - bara div sto nema siblings => only child
+
+p:first-of-type - prv type vo sekoj parent
+p:last-of-type - posledniot paragraf vo sekoj parent
+p:only-of-type - samo ako e edinstvena instanca na elementot
+						vo parentot
+list:nth-child(n) - ili even,odd, n pocnuva od 0
+	samo ako n-tiot element vo parent e od istiot tip
+
+list:nth-last-child(n) - pravi matematika ko normalno no broi od krajot nagore 
+list:nth-of-type(n) - nti vo sekoj parent
+list:nth-last-of-type(n) - ista matematika ko last-child, ista 				
+logika ko nth of type
+
+section:target ?
+div:empty - targetira elementi koi nemaat child elementi niti         
+       nekakov tekst vnatre vo niv (pr. mora da e <div></div>)
+div:not(.classname) - site divs osven tie so ja imaat klasata
+:not(div) - * osven divs
+
+psevdo elementi / pseudo-elements
+
+.some-class:first-letter - prva bukva od tekst
+.some-class:first-line - prv red od tekst
+
+a:before ili a:after - dodavaat nested stvari direktno nad ili pod elementot
+prima attribute content: so kazuva so ustvari ke stavis
+
+::selection - delovi od dokumentot so gi selektiral korisnikot ??
+
+inline styles > embedded style sheet > linked style sheet
+authors style sheet > readers st. sh. > browser defaults
+ID > class > contextual selector depth
+
+value ! important dava najgolema prednost na taa vrednost
+attribute: inherit - se zemaat vrednostite od parentot
+
+box-sizing: 
+content-box - default, width/height + padding + border + margin
+padding-box - i da se zgolemi paddingot h/w ostanuva isto 
+border-box - i da se zgolemat padding, border, h/w e isto
+
+
+float: left right inherit
+go pravi elementot da e display block i da odi na najdesniot/leviot kraj od containerot kaj so se naoga
+
+poveke elementi so ista float vrednost se sobiraat eden do drug dodeka ima mesto
+
+clear: both left right inherit - go cisti floatot i go pravi
+elementot da se odnesuva normalno
+
+
+clearfix ->
+.a:before, .a:after content=""; display :table
+.a:after clear:both;
+.a clear:both, *zoom: 1;
+
+<section>some text 
+</section><section> ..   
+vaka se prai za da nema prazno mesto megu sectionsot
+
+justify-content - na glavnata oska gi rasporeduva
+align-items - na sporedna oska ama samo ako se site u eden red
+align-content - align items ama za poise redovi/kol
+(*-content) primaat vrednosti stretch, flex-start, flex-end, space-between, space-around, space-evenly
+
+
+
+audio video
+table
+selektori only child first-of-type..
+
+text-shadow: h-shadow* v-shadow* blur-radius color
+
