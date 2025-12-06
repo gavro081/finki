@@ -18,6 +18,7 @@ All tracked exercises for my undergrad courses at FCSE.
 ### semester 4
 - [Artifical Intelligence](https://github.com/gavro081/finki/tree/main/semester-4/VI_2024-25)
 - [Operating systems](https://github.com/gavro081/finki/tree/main/semester-4/OS_2024-25)
+- [Internet Technologies](https://github.com/gavro081/finki/tree/main/semester-4/IT_2024-25)
 
 ### semester 5
 - [Databases](https://github.com/gavro081/finki/tree/main/semester-5/BP_2025-26)
