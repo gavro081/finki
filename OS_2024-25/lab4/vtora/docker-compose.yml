@@ -1,0 +1,19 @@
+services:
+  sensor:
+    build:
+      context: ./sensor
+    volumes:
+      - ./data:/data
+    container_name: temperature-sensor
+
+  monitor:
+    build:
+      context: ./monitor
+    volumes:
+      - ./data:/data
+    container_name: temperature-monitor
+    depends_on:
+      - sensor
+
+volumes:
+  data:

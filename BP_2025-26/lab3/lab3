@@ -1,0 +1,16 @@
+1. πname(σ(capacity>5)(location))
+2. π(book_title)Book_Promotion
+3.
+authors<-σnationality='German' (Author)
+promotions<-πartistic_name,fair_id(Book_Promotion⨝Book_promotion.author_id=authors.author_id (authors))
+fairs<-πartistic_name,Fair.fair_id,location_id(promotions⨝promotions.Fair_id=Fair.fair_id Fair)
+result<-πartistic_name,name(fairs⨝fairs.location_id=Location.location_id Location)
+4.
+has_sponsors<-πPublisher.publisher_id(Publisher⨝Publisher.publisher_id=Publisher_Sponsor.publisher_id Publisher_Sponsor)
+has_book<-πPublisher.publisher_id(Publisher⨝Publisher.publisher_id=Book_Promotion.publisher_id Book_Promotion)
+has_sponsors∪has_book
+5.
+sponsors<-Publisher⨝Publisher_Sponsor
+num_sponsors<-γpublisher_id;count(sponsor)sponsors
+more_than_3<-σCount_sponsor>3 num_sponsors
+result<-πbook_title (Book_Promotion⨝more_than_3)

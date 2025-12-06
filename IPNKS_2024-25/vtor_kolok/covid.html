@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+      #plot{
+        width: 700px;
+      }
+      .flex{
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      #img{
+        opacity: 0;
+      }
+    </style>
+</head>
+<body>
+<div class="flex">
+  <button id="show-all" onclick="show_all()">show all</button>
+  <select id="dropdown" onchange="filter()">
+    <option>Select a country</option>
+  </select>
+</div>
+<img src="" id="img" width="200px"
+     >
+<div id="plot"></div>
+<script>
+  let data;
+  let country_names;
+  const url = "https://disease.sh/v3/covid-19/countries";
+
+  fetch(url)
+          .then(res => res.json())
+          .then(d => {
+            data = d;
+            country_names =  data.map(country => country.country);
+            makeDropDown();
+            makeGraph();
+          })
+
+  const makeDropDown = () => {
+    const drop = document.getElementById("dropdown");
+
+    for (let name of country_names){
+      drop.innerHTML += `<option id="${name}">${name}</option>`
+    }
+  }
+  const makeGraph = () => {
+    console.log(data)
+    const trace1 = {
+      x: country_names,
+      y: data.map(country => country.cases),
+      name: 'Total cases',
+      type: 'bar'
+    }
+    const trace2 = {
+      x: country_names,
+      y: data.map(country => country.recovered),
+      name: 'Recovered',
+      type: 'bar'
+    }
+    const trace3 = {
+      x: country_names,
+      y: data.map(country => country.deaths),
+      name: 'Deaths',
+      type: 'bar'
+    }
+
+    let plot_data = [trace1, trace2, trace3];
+
+    let layout = {barmode: 'group', title:"COVID-19 data"};
+
+    Plotly.newPlot('plot', plot_data, layout)
+  }
+
+  const filter = () => {
+    const country = document.getElementById("dropdown").value;
+    const img = document.getElementById("img");
+    const country_data = data.find(c => c.country == country);
+    img.setAttribute("src", country_data["countryInfo"]["flag"]);
+    const trace1 = [
+      {
+        x: ['total cases', 'active', 'deaths'],
+        y: [country_data.cases, country_data.active, country_data.deaths],
+        type: 'bar',
+      }
+    ];
+
+    Plotly.newPlot('plot', trace1, {title: "Situation in " + country});
+
+    anime({
+      targets: '#img',
+      opacity: [0,1],
+      scale: [0,1],
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    })
+  }
+
+  const img = document.getElementById("img");
+  const animate = () => {
+    img.classList.toggle('makeCircle');
+    anime({
+      targets: '#img',
+      opacity: "1",
+      borderRadius: img.classList.contains('makeCircle') ? '50%' : '0',
+      easing: 'easeInOutQuad'
+    })
+  }
+  img.addEventListener("click", animate)
+
+  const show_all = () => {
+    anime({
+      targets: '#img',
+      opacity: 0,
+      easing: 'easeInOutQuad'
+    })
+    makeGraph();
+  }
+</script>
+</body>
+</html>

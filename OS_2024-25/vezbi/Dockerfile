@@ -1,0 +1,2 @@
+FROM ass
+WORKDIR /app

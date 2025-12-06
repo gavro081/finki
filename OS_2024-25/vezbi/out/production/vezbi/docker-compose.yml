@@ -1,0 +1,18 @@
+services:
+  service2:
+    networks:
+      - network-home
+  service1:
+    image: openjdk:latest
+    ports:
+      - "30:8080"
+    networks:
+      - network-home
+    environment:
+      - API:"1123"
+      - API_:123
+
+
+networks:
+  - network-home:
+      driver: bridge

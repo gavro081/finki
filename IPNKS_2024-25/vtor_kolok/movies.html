@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    *{
+      font-family: AppleSystemUIFont, sans-serif;
+    }
+    img{
+      width: 300px;
+    }
+    #view{
+      border-radius: 5px;
+      border: 1px solid black;
+      width: 500px;
+      display: none;
+      margin-top: 10px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #e0f8ff;
+    }
+  </style>
+</head>
+<body>
+<input type="text" id="input">
+<button id="btn">click</button>
+<div id="view">
+  <h3 id="title"></h3>
+  <h4 id="actors"></h4>
+  <h4 id="director"></h4>
+  <img src="" id="poster">
+  <p id="plot"></p>
+</div>
+<script type="module">
+
+  const run = () => {
+    const api_key = "8c86e53c";
+    const movie_title = document.getElementById("input").value;
+    if (!movie_title) {
+      alert("enter a movie name");
+      return;
+    }
+    let url = "https://www.omdbapi.com/?i=tt3896198&apikey="+api_key+"&t="+movie_title
+    fetch(url)
+            .then(res => res.json())
+            .then(data => {
+              console.log(data)
+              update(data)
+            })
+  }
+
+  const update = (data) => {
+    document.getElementById("view").style.display = "flex";
+    document.getElementById("title").innerText = data.Title;
+    document.getElementById("director").innerText = data.Director;
+    document.getElementById("actors").innerText = data.Actors;
+    document.getElementById("plot").innerText = data.Plot;
+    document.getElementById("poster").setAttribute("src", data.Poster);
+  }
+  document.getElementById("btn").addEventListener("click", run);
+</script>
+</body>
+</html>

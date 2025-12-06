@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karticki</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        label{
+            display: inline;
+        }
+        input,select {
+            display: block;
+        }
+        .input{
+            background-color: lightcyan;
+            width: 250px;
+            padding: 1rem 2rem;
+        }
+        #add-btn{
+            padding: .3rem;
+            background-color: lightcoral;
+            border: 1px solid black;
+            cursor: pointer;
+            margin-top: 1rem;
+            border-radius: 10%;
+        }
+        .container div{
+            display: inline-block;
+            margin: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="input">
+    <label for="width">width: </label>
+    <input type="number" id="width" min="1" max="500">
+    <label for="height">height:</label>
+    <input type="number" id="height" min="1" max="500">
+    <label for="color">color: </label>
+    <select name="color" id="color">
+        <option value="red">red</option>
+        <option value="pink">pink</option>
+        <option value="purple">purple</option>
+        <option value="green">green</option>
+        <option value="yellow">yellow</option>
+    </select>
+    <button id="add-btn" onclick="add()">Add</button>
+</div>
+<div class="container"></div>
+<script>
+    const container = document.querySelector(".container");
+    function add(){
+        const width = document.querySelector("#width").value;
+        const height = document.querySelector("#height").value;        
+        const color = document.querySelector("#color").value;     
+        
+        if (width === "" || height === "") {
+            alert("fill all fields");
+            return;
+        }
+        console.log(width);
+        console.log(height);
+        console.log(color);
+    
+        let div = document.createElement("div");
+        div.style.width = width + "px";
+        div.style.height = height + "px";
+        div.style.backgroundColor = color;
+
+        container.append(div);
+    }
+</script>
+</body>
+</html>

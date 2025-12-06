@@ -1,0 +1,19 @@
+1. mkdir directory1 directory2
+   cd directory1
+   touch file123
+
+2. man ls
+
+3. chmod ug+xr file123    
+   chmod o-r file123 
+
+4. chmod u=rx,g=rx
+
+5. who
+
+6.  mv directory1/file123 directory2/file234
+
+7. rm -r directory1
+
+
+

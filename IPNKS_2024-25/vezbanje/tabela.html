@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kolok vezba tabela</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+       .container{
+        background-color: pink;
+        width: 300px;
+        padding: 1rem 2rem;
+        margin-bottom: 3rem;
+       }
+       .container label{
+        display: inline;
+       }
+       .container input{
+        margin-bottom: 10px;
+        display: block;
+       }
+       .container button{
+        padding: .3rem;
+        margin-top: 1rem;
+        border: 1px solid black;
+        background-color: rgb(248, 100, 100);
+        cursor: pointer;
+       }
+
+       #table{
+        width: 400px;
+        text-align: center;
+        border-collapse: collapse;
+        border: 1px solid black;
+        background-color: rgb(255, 211, 217);
+       }
+
+       td,th{
+        border: 1px solid black;
+       }
+
+       #btn-col{
+        width: 60px;
+       }
+       #table button{
+            width: 40px;
+            cursor: pointer;
+            background-color: palevioletred;
+            border: 1px solid black;
+            /* aspect-ratio: 1; */
+
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="ime">Ime:</label>
+        <input type="text" id="ime">
+        <label for="prezime">Prezime:</label>
+        <input type="text" id="prezime">
+        <label for="broj">Broj</label>
+        <input type="text" id="broj">
+        <button id="post" onclick="add()">POST</button>
+    </div>
+    <table id="table">
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Broj</th>
+            <th id="btn-col"> </th>
+        </tr>
+    </table>
+<script>
+    let table = document.querySelector("#table");
+    let index = 0;
+    let users = [];
+    function add(){
+        let name = document.querySelector("#ime").value;
+        let surname = document.querySelector("#prezime").value;
+        let number = document.querySelector("#broj").value;
+        if (!name || !surname || !number) {
+            alert("All inputs should be filled!");
+            return;
+        }
+        if (isNaN(number) || number.length != 9){
+            alert("enter a valid number")
+            return;
+        }
+        if (users.some((user) => user.num === number)){
+            alert("such number already exists")
+            return;
+        }
+        index++;
+        users.push({
+            ind: index,
+            num: number
+        })
+        let newobj = document.createElement("tr");
+        newobj.classList.add("ind" + index);
+        newobj.innerHTML = `
+        <td>${name}</td>
+        <td>${surname}</td>
+        <td>${number}</td>
+        <td><button class="delete ${index}" onclick="remove(${index})">delete</button></td>
+        `
+        console.log(users);
+        table.append(newobj);
+    }
+    function remove(i){
+        let del = document.querySelector(".ind" + i);
+        users = users.filter(user => user.ind !== i)
+        console.log(users);
+        table.removeChild(del);
+    }
+</script>
+</body>
+</html>

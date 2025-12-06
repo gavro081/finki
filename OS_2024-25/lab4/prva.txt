@@ -1,0 +1,170 @@
+1. 
+$ docker run -it debian:11-slim
+$ apt update && apt install -y nginx
+...
+$ exit
+$ docker ps -a
+
+CONTAINER ID   IMAGE            COMMAND   CREATED          STATUS                     PORTS     NAMES
+b507dd3d885e   debian:11-slim   "bash"    34 seconds ago   Exited (0) 4 seconds ago             sweet_montalcini
+
+$ docker commit b507dd3d885e nginx-product-host-i
+
+sha256:10750ddd7c08e2481db69ce000....
+
+2. 
+$ docker run -d --name nginx-product-host-i-container -p 8080:80 nginx-product-host-i bash -c "nginx -g 'daemon off;'"
+
+41a4acb64c3...
+
+$ docker ps -a
+CONTAINER ID   IMAGE                  COMMAND                  CREATED              STATUS                      PORTS                                   NAMES
+41a4acb64c33   nginx-product-host-i   "bash -c 'nginx -g '…"   5 seconds ago        Up 4 seconds                0.0.0.0:8080->80/tcp, :::8080->80/tcp   nginx-product-host-i-container
+
+$ curl http://localhost:8080
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+...
+
+3.
+$ mkdir nginx-dockerfile
+$ cd nginx-dockerfile/
+$ nano Dockerfile
+$ docker build -t nginx-product-host .         
+......
+Successfully built 1f5a4573f96e
+Successfully tagged nginx-product-host:latest
+
+$ docker images
+REPOSITORY             TAG       IMAGE ID       CREATED         SIZE
+nginx-product-host     latest    1f5a4573f96e   2 minutes ago   164MB
+nginx-product-host-i   latest    10750ddd7c08   7 minutes ago   164MB
+debian                 11-slim   6ad184acc3ba   2 weeks ago     80.7MB
+
+4. 
+$ docker run -d --name nginx-product-host-container -p 8081:80 nginx-product-host
+648e2c...
+
+$ docker ps
+CONTAINER ID   IMAGE                  COMMAND                  CREATED         STATUS         PORTS                                   NAMES
+648e2ce6cf5e   nginx-product-host     "nginx -g 'daemon of…"   6 seconds ago   Up 5 seconds   0.0.0.0:8081->80/tcp, :::8081->80/tcp   nginx-product-host-container
+41a4acb64c33   nginx-product-host-i   "bash -c 'nginx -g '…"   7 minutes ago   Up 7 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   nginx-product-host-i-container
+
+5.
+$ docker cp ~/products.txt nginx-product-host-container:/var/www/html/
+$ docker cp ~/products.txt nginx-product-host-i-container:/var/www/html/
+
+6.
+curl http://localhost:8081
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+....
+
+7.
+docker stop nginx-product-host-container
+docker rm nginx-product-host-container
+docker stop nginx-product-host-i-container
+docker rm nginx-product-host-i-container
+
+8.
+$ nano products.txt
+$ mkdir ~/html
+$ cp ~/products.txt ~/html/
+
+9.
+docker run -d --name nginx-product-host-container -p 8081:80 -v ~/html:/var/www/html nginx-product-host
+2ba66e586d...
+ubuntu:~/nginx-dockerfile$ docker ps 
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS         PORTS                                   NAMES
+2ba66e586d2d   nginx-product-host   "nginx -g 'daemon of…"   6 seconds ago   Up 4 seconds   0.0.0.0:8081->80/tcp, :::8081->80/tcp   nginx-product-host-container
+
+10.
+$ curl http://localhost:8081/products.txt
+Fridge;$600;5
+TV;$1500;6
+Microwave;$200;10
+
+11.
+$ mkdir java-container
+$ cd java-container/
+$ nano ProductsManagement.java
+$ nano Dockerfile
+
+12.
+$ docker build -t products-viewer 
+...
+Successfully built a03983c29ee7
+Successfully tagged products-viewer:latest
+$ docker images
+REPOSITORY             TAG       IMAGE ID       CREATED          SIZE
+products-viewer        latest    a03983c29ee7   15 seconds ago   448MB
+nginx-product-host     latest    1f5a4573f96e   17 minutes ago   164MB
+nginx-product-host-i   latest    10750ddd7c08   22 minutes ago   164MB
+eclipse-temurin        latest    2712a3631a75   4 days ago       448MB
+debian                 11-slim   6ad184acc3ba   2 weeks ago      80.7MB
+
+13.
+$ docker run -d --name products-viewer-container -v ~/html:/var/www/html products-viewer
+42e83...
+
+$ docker ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                      PORTS                                   NAMES
+42e836c97188   products-viewer      "/__cacert_entrypoin…"   17 seconds ago   Exited (0) 17 seconds ago                                           products-viewer-container
+2ba66e586d2d   nginx-product-host   "nginx -g 'daemon of…"   6 minutes ago    Up 6 minutes                0.0.0.0:8081->80/tcp, :::8081->80/tcp   nginx-product-host-container
+b507dd3d885e   debian:11-slim       "bash"                   25 minutes ago   Exited (0) 24 minutes ago                                           sweet_montalcini
+
+14.
+$ docker logs products-viewer-container
+Product Name: Fridge
+Product Price: $600
+Product Quantity: 5
+
+
+Product Name: TV
+Product Price: $1500
+Product Quantity: 6
+
+
+Product Name: Microwave
+Product Price: $200
+Product Quantity: 10
+
+15.
+$ nano ProductsManagement.java 
+$ docker build -t products-viewer .
+...
+Successfully built c94f2ba7e15c
+Successfully tagged products-viewer:latest
+
+16.
+$ docker stop products-viewer-container
+$ docker rm products-viewer-container
+$ docker run -d --name products-viewer-container -v ~/html:/var/www/html -e PRODUCT_FILE_PATH=/var/www/html/products.txt products-viewer
+144cbc808032f2a57c841b98036e73a2d4151ad09133671d2d3f0f0510db8d24
+
+17.
+$ docker logs products-viewer-container
+Product Name: Fridge
+Product Price: $600
+Product Quantity: 5
+
+
+Product Name: TV
+Product Price: $1500
+Product Quantity: 6
+
+
+Product Name: Microwave
+Product Price: $200
+Product Quantity: 10
+
+
+
+

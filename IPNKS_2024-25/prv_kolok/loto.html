@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loto</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            gap: .5rem;
+        }
+
+        .input{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .input input{
+            width: 200px;
+        }
+        button {
+            align-self: start;
+            padding: 0.5rem 1rem;
+        }
+        .card{
+            width: 500px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            background-color: lightpink;
+            margin-bottom: 30px;
+        }
+
+        .win{
+            /*display: none;*/
+        }
+
+        .combos, .card{
+            display: flex;
+        }
+
+        .full{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+        #numbers{
+            display: flex;
+            gap: .3rem;
+            margin-bottom: 10px;
+        }
+        .combo-box{
+            padding: 5px;
+            display: inline;
+            background-color: lightpink;
+            border-radius: 50%;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>National Lottery Game</h1>
+    <div class="full">
+        <div class="container">
+            <div class="input">
+                <label>Name and surname</label>
+                <input id="name" type="text">
+            </div>
+            <div class="input">
+                <label>Ticket amount</label>
+                <input id="amount" type="text">
+            </div>
+            <div class="input">
+                <label>Code</label>
+                <input id="code" type="text">
+            </div>
+            <div class="input">
+                <label>Combination</label>
+                <input id="combination" type="text">
+                <!--            1,2,3,4.. 7 vakvi-->
+            </div><div class="input">
+            <label>Bonus</label>
+            <select id="bonus">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </div>
+            <button id="add" onclick="add()">Add</button>
+        </div>
+
+        <div class="lucky-numbers">
+            <h1>Lucky Numbers</h1>
+            <div id="numbers">
+
+            </div>
+            <button id="getnumbers" onclick="getnumbers()">Get weekly combinations</button>
+            <p>Total win: <span id="win">0</span></p>
+        </div>
+    </div>
+    <div class="tickets"></div>
+
+<script>
+    let counter = 0;
+    let container = document.querySelector(".tickets");
+    let w = document.getElementById("win");
+    let used = [];
+    function add(){
+        let name = document.getElementById("name").value;
+        let amount = document.getElementById("amount").value;
+        let code = document.getElementById("code").value;
+        let combination = document.getElementById("combination").value.split(",");
+        let bonus = document.getElementById("bonus").value;
+
+
+        if (used.includes(code)){
+            alert("code is already in use!")
+            return;
+        }
+
+        if (!checkCode(code)){
+            alert("invalid code!")
+            return;
+        }
+
+        if (!name || !amount || !code || !combination || !bonus) {
+            alert("all inputs must be filled!");
+            return;
+        }
+        used.push(code);
+        let div = document.createElement("div");
+        div.innerHTML = `
+        <p>Name: <span>${name}</span></p>
+        <p>Code: <span>${code}</span></p>
+        <p>Combinations: <span class="combos"></span></p>
+        <p>Initial amount: <span class="initial-amount">${amount}</span></p>
+        <p class="win" ">Total win: <span class="win-amount"></span></p>
+        <button style="display: none" onclick="getpaid(this)">Get Paid</button>
+        `;
+        div.classList.add("card");
+        if (bonus === "Yes") div.children[0].classList.add("bonus");
+        document.querySelector(".tickets").append(div);
+        let combos = div.querySelector(".combos");
+        combination.forEach(c => {
+            combos.innerHTML += `<div class="combo-box">${c}</div>`;
+        })
+    }
+
+    function checkCode(code){
+        const allowedChars = "qwertyuiopasdfghjklzxcvbnm!%"
+        for (let i = 0; i < code.length; i++) {
+            if (!allowedChars.includes(code[i])){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function getnumbers(){
+        let numdiv = document.querySelector("#numbers");
+        let nums = [];
+        for (let i = 0; i < 7; i++) {
+            nums.push(Math.round(Math.random() * 1000 % 31 + 1))
+        }
+        numdiv.innerHTML = "";
+        nums.forEach(num => {
+            numdiv.innerHTML += `<div class="combo-box">${num}</div>`
+        })
+
+        checkScores(nums);
+    }
+
+    function checkScores(nums){
+        let allcombos = document.querySelectorAll(".combos");
+        let win = 0;
+        allcombos.forEach(combo => {
+            let ctr = 0;
+            let picked = combo.querySelectorAll(".combo-box");
+            picked.forEach(pick => {
+                for (let i = 0; i < 7; i++) {
+                    if (nums[i] === parseInt(pick.innerText)) {
+                        ctr++; break;
+                    }
+                }
+            })
+            let parent = combo.parentNode.parentNode;
+            if (ctr >= 6){
+                parent.style.backgroundColor = "green";
+            }
+            else if (ctr >= 4){
+                parent.style.backgroundColor = "lightblue";
+            }
+            else {
+                parent.style.backgroundColor = "yellow";
+            }
+            let uplatena = parent.querySelector(".initial-amount").innerHTML;
+            if (parent.querySelector(".bonus"))
+                parent.querySelector(".win-amount").innerText = 500 + ctr * 30 + parseInt(uplatena);
+            else
+                parent.querySelector(".win-amount").innerText = ctr * 30 + parseInt(uplatena);
+
+            parent.children[5].style.display = "block";
+
+            win += parseInt(parent.querySelector(".win-amount").innerText);
+        })
+        w.innerText = win;
+    }
+
+    function getpaid(obj){
+        obj.parentNode.classList.add("delete");
+        let p = obj.parentNode.parentNode;
+        let winamount = w.innerText;
+        winamount -= obj.parentNode.querySelector(".win-amount").innerText;
+        w.innerText = winamount;
+        p.querySelector(".delete").remove()
+    }
+</script>
+</body>
+</html>

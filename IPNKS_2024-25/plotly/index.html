@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      body {
+        padding-bottom: 1000px;
+      }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<div id="container2"></div>
+<div id="container3"></div>
+<div id="container4"></div>
+
+<button onclick="visualize()">show all</button>
+<button onclick="visualize('Senior')">show senior</button>
+<button onclick="visualize('Junior')">show junior</button>
+<div id="container5"></div>
+<div style="display:flex">
+  <div id="container6"></div>
+  <div id="container7"></div>
+</div>
+
+
+<select id="pickPosition" onchange="visualize3()">
+  <option>All</option>
+  <option>Guard</option>
+  <option>Forward</option>
+  <option>Center</option>
+</select>
+
+<div id="container8"></div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+  const data1 = [{
+    x: ['x1', 'x2', 'x3'],
+    y: [5, 10, 15],
+    type: 'bar'
+  }];
+  Plotly.newPlot('container', data1)
+
+  const data2 = [{
+    x: ['monday', 'tuesday', 'wednesday', 'thursday', "friday"],
+    y: [5, 10, 15, 20, 25],
+    type: 'scatter',
+    mode: 'lines'
+  }]
+  Plotly.newPlot('container2', data2)
+
+  const data3 = [{
+    values: [30, 65, 5],
+    labels: ['option a', 'option b', 'other'],
+    type: 'pie'
+  }]
+  Plotly.newPlot('container3', data3)
+
+  const data1_1 = {
+    x: ['jan', 'feb', 'mar'],
+    y: [300, 400, 150],
+    name: 'expenses',
+    type: 'bar'
+  }
+
+  const data1_2 = {
+    x: ['jan', 'feb', 'mar'],
+    y: [250, 300, 50],
+    name: 'savings',
+    type: 'scatter',
+    mode: 'lines + markers'
+  }
+
+  const layout1 = {
+    title: "monthly overview",
+    xaxis: {title : 'months'},
+    yaxis: {title : 'amount in usd'}
+  };
+
+  Plotly.newPlot('container4', [data1_1, data1_2], layout1);
+  let JSONdata1, JSONdata2;
+  fetch('earnings.json')
+          .then(response => response.json())
+          .then(data => {
+            JSONdata1 = data;
+            visualize();
+          })
+          .catch(error => console.error(error))
+
+  const visualize = (filter) => {
+    let tempData = JSONdata1;
+    if (filter) tempData = tempData.filter(obj => obj.level === filter)
+    let display_data = [];
+    for (let employee of tempData){
+      let display_curr = {
+        x: employee.earnings.map(earning => earning.month),
+        y: employee.earnings.map(earning => earning.amount),
+        type: 'markers + lines',
+        name: employee.name
+      }
+      display_data.push(display_curr);
+    }
+    Plotly.newPlot('container5', display_data);
+  }
+
+  fetch('population.json')
+          .then(response => response.json())
+          .then(data => {
+            JSONdata2 = data
+            visualize2();
+          })
+          .catch(error => console.error(error))
+
+  const visualize2 = () => {
+
+    let population = getPopulation();
+    let piedata = [{
+      values: population,
+      labels: JSONdata2.map(type => type.ageRange),
+      type: 'pie'
+    }]
+
+    let layout = {
+      title: "population distrbution by age group"
+    }
+    Plotly.newPlot('container6', piedata, layout);
+
+    const bubbledata = JSONdata2.flatMap(group =>
+            group.incomeData.map(income => ({
+              x: [income.occupation],
+              y: [income.avgIncome],
+              mode: 'markers',
+              marker: {
+                size: [income.people],
+                sizemode: 'area',
+                sizeref: 30,
+                color: income.avgIncome
+              },
+              name: `${income.occupation} (${group.ageRange})`
+            }))
+    );
+
+    let layout2 = {
+      title: "income distribution by occupation",
+      xaxis: {title : "occupation"},
+      yaxis : {title : "average income (USD)"},
+      showlegend: true
+    }
+
+    console.log(bubbledata)
+    Plotly.newPlot("container7", bubbledata, layout2)
+  }
+
+  const getPopulation = () => {
+    let population = [];
+    JSONdata2.forEach(data => {
+      let sum = 0;
+      data.incomeData.forEach(d => sum += d.people);
+      population.push(sum)
+    })
+    return population;
+  }
+
+  const playersData = [
+    {
+      team: "Lakers",
+      players: [
+        { name: "LeBron James", position: "Forward", ppg: 27.1, rpg: 7.4 },
+        { name: "Anthony Davis", position: "Forward", ppg: 24.0, rpg: 9.1 },
+        { name: "Russell Westbrook", position: "Guard", ppg: 19.5, rpg: 7.4 },
+        { name: "Dennis Schroder", position: "Guard", ppg: 12.4, rpg: 3.1 },
+        { name: "Dwight Howard", position: "Center", ppg: 7.4, rpg: 8.3 }
+      ]
+    },
+    {
+      team: "Warriors",
+      players: [
+        { name: "Stephen Curry", position: "Guard", ppg: 29.3, rpg: 5.4 },
+        { name: "Klay Thompson", position: "Guard", ppg: 20.4, rpg: 3.6 },
+        { name: "Draymond Green", position: "Forward", ppg: 8.4, rpg: 7.3 },
+        { name: "Andrew Wiggins", position: "Forward", ppg: 17.2, rpg: 4.5 },
+        { name: "Kevon Looney", position: "Center", ppg: 6.1, rpg: 7.5 }
+      ]
+    }
+  ];
+
+  const visualize3 = () => {
+    let filter = document.getElementById("pickPosition").value;
+    const tmpData = playersData.map(team => ({
+      team: team.team,
+      players: team.players.filter(p => filter === 'All' || p.position === filter)
+    }));
+
+    const lakersPlayers = tmpData.find(team => team.team === 'Lakers').players;
+    const warriorsPlayers = tmpData.find(team => team.team === 'Warriors').players;
+
+    const lakersChart = {
+      x: lakersPlayers.map(p => p.ppg),
+      y: lakersPlayers.map(p => p.name),
+      name: "Lakers",
+      type: "bar",
+      orientation: "h",
+      marker: {color : "purple"}
+    };
+
+    const warriorsChart = {
+      x: warriorsPlayers.map(p => p.ppg),
+      y: warriorsPlayers.map(p => p.name),
+      name: "Warriors",
+      type: 'bar',
+      orientation: 'h',
+      marker: {color : 'gold'}
+    };
+
+    const layout = {
+      title: "nba players comparison",
+      barmode: 'stack',
+      xaxis: {title: 'points per game (ppg)'},
+      yaxis: {title : 'players', automargin: true},
+      height: 700,
+      legend: {orientation: 'h'}
+    };
+
+    Plotly.newPlot("container8", [lakersChart, warriorsChart], layout);
+  }
+  visualize3()
+
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Form</title>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+
+        ul li{
+            list-style-type: none;
+        }
+        .input-box{
+            margin-bottom: 5px;
+            display: grid;
+            grid-template-columns: 30% 70%;
+            width: 500px;
+        }
+
+    </style>
+</head>
+<body>
+<h3>Book form</h3>
+<form action="/books/add" method="POST">
+    <div class="input-box">
+        <label for="title">Title:</label>
+        <input id="title" type="text" name="title" required
+        th:value="${book != null ? book.getTitle() : ''}"><br/>
+    </div>
+    <div class="input-box">
+        <label for="genre">Genre:</label>
+        <input id="genre" type="text" name="genre" required
+               th:value="${book != null ? book.getGenre() : ''}"><br/>
+    </div>
+    <div class="input-box"><label for="averageRating">Average Rating:</label>
+        <input id="averageRating" type="text" name="averageRating" required
+               th:value="${book != null ? book.getAverageRating() : ''}"><br/></div>
+    <div class="input-box">
+        <label for="select-author">Pick an author:</label>
+        <select id="select-author" name="authorId">
+            <option th:each="author : ${authors}"
+                    th:value="${author.getId()}"
+                    th:id="${author.toString()}"
+                    th:text="${author.toString()}"
+                    th:selected="${book != null && author.getId() == book.getAuthor().getId()}"
+            ></option>
+        </select>
+    </div>
+    <button>Submit</button>
+</form>
+</body>
+</html>

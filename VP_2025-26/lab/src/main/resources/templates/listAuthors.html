@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors</title>
+    <style>
+        body {
+            margin: auto;
+            width: 800px;
+        }
+        * {
+            font-family: Arial, sans-serif;
+        }
+        a {
+            background-color:lightsalmon;
+            text-decoration: none;
+            padding: 3px;
+            border: 1px solid gray;
+            border-radius: 2px;
+            color: #111;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+        }
+        li {
+            background-color: #fabeb3;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>All authors</h1>
+<ul>
+    <li th:each="author : ${authors}">
+        <p th:text="${author.toString()}"></p>
+        <p><b>Likes: <span th:text="${author.getLikes()}"></span></b>&nbsp;
+            <a th:href="@{'/authors/like/{id}' (id=${author.getId()})}">Like</a>
+        </p>
+    </li>
+</ul>
+</body>
+</html>

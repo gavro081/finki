@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, tr, td {
+            border: 1px solid black;
+            padding: .2rem;
+        }
+    </style>
+</head>
+<body>
+<input id="search" onchange="search(this)" placeholder="search by name / brand">
+<select id="search-filter">
+    <option>name</option>
+    <option>brand</option>
+    <!--  <option>price</option>-->
+</select>
+<button onclick="createTable()">reset</button>
+<script>
+    let allProducts = [];
+    const table = document.createElement("table");
+    const search_filter = document.querySelector("#search-filter");
+
+    fetch('products.json')
+        // prvo vraka promise
+        .then(response => response.json())
+        .then(data => {
+            allProducts = data.products;
+            createTable();
+        })
+        .catch(err => console.error(err))
+
+    const createTable = (tmpProducts) => {
+        const products = tmpProducts ? tmpProducts : allProducts;
+        table.innerHTML = "";
+        let headers = Object.keys(products[1]);
+        headers = headers.filter(header => header !== 'image');
+        let headerRow = document.createElement("tr");
+        for (let h of headers) {
+            headerRow.innerHTML += `<th onclick="sort('${h}')">${h}</th>`
+        }
+        table.appendChild(headerRow);
+
+        products.forEach(product => {
+            let tr = document.createElement("tr");
+            for (let h of headers) {
+                tr.innerHTML += `<td>${product[h]}</td>`
+            }
+            tr.classList.add(product['brand']);
+            table.appendChild(tr);
+        })
+        document.body.appendChild(table);
+    }
+    const sort = (criteria) => {
+        let tmpProducts = allProducts.toSorted((a, b) => {
+            if (Number.isNaN(Number(a[criteria]))) return a[criteria].localeCompare(b[criteria])
+            return a[criteria] - b[criteria];
+        })
+        createTable(tmpProducts);
+    }
+
+    const search = (input) => {
+        // add declaration for filter by
+        const filter = input.value;
+        const tmpProducts = allProducts.filter((product) => {
+            return product[`${search_filter.value}`].toLowerCase().startsWith(filter);
+        })
+        createTable(tmpProducts);
+    }
+</script>
+</body>
+</html>

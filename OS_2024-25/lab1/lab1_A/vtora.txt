@@ -1,0 +1,26 @@
+1. mkdir results
+   cd results
+   touch OS1.txt OS2.txt
+
+2. nano OS1.txt 
+# pa copy paste, istoto za OS2
+
+3. cat OS1.txt
+   cat OS2.txt
+   cat OS1.txt OS2.txt
+
+4. cat OS1.txt OS2.txt >> total.txt
+
+5. mkdir  results_2023
+   mv total.txt results_2023
+
+6. wc total.txt
+
+7. cat total.txt | grep ^22
+
+8. cat total.txt | awk '$1 >= 230000 && $4 > 50 {print $1, $2, $4}'
+
+9. cat total.txt | awk '$2 == "21.03.2024" && $3 == "in_progress"' | wc -l
+
+
+

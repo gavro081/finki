@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>View Reservations</title>
+</head>
+<body>
+<header>
+  <h1>View reservations</h1>
+</header>
+<main>
+  <ol>
+    <li th:each="reservation : ${reservations}">
+      <p>Book info: <span th:text="${reservation.getBook()}"></span></p>
+      <p>Reader address: <span th:text="${reservation.getReaderAddress()}"></span></p>
+      <p>Reader name: <span th:text="${reservation.getReaderName()}"></span></p>
+      <p>Number of copies: <span th:text="${reservation.getNumberOfCopies()}"></span></p>
+    </li>
+  </ol>
+</main>
+</body>
+</html>

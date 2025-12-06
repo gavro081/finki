@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      .box1{
+          background: gray;
+          width: 200px;
+          border-radius: 20px;
+          margin-top: 200px;
+          aspect-ratio: 1;
+      }
+      .target{
+          background: green;
+          width: 40px;
+          position: absolute;
+          border-radius: 3px;
+          right: 50px;
+          aspect-ratio: 1;
+          opacity: 1;
+      }
+
+      .shot{
+          width: 30px;
+          height: 10px;
+          background-color: orangered;
+          position: absolute;
+          left: 210px;
+      }
+
+    </style>
+</head>
+<body>
+<button onclick="up()">&uparrow;</button>
+<button onclick="down()">&downarrow;</button>
+<button onclick="shoot()">shoot</button>
+<p>Score: <span id="score">0</span></p>
+
+<div class="box1"></div>
+
+<div class="target"></div>
+
+<script>
+    // document.addEventListener("keydown", (e) => {
+    //     console.log(e.key);
+    //     if (e.key === "ArrowUp") up();
+    //     else if (e.key === "ArrowDown") down();
+    //     else if (e.key === " ") shoot();
+    // })
+    const box = document.querySelector(".box1");
+    const target = document.querySelector(".target");
+    const scoreboard = document.querySelector("#score");
+    let score = 0;
+
+    let currentY = 0;
+    function up(){
+        if (currentY <= -200) return;
+        currentY -= 10;
+        box.style.transform = `translateY(${currentY}px)`;
+    }
+    function down(){
+        if (currentY > 300) return;
+        currentY += 10;
+        box.style.transform = `translateY(${currentY}px)`;
+    }
+
+    function generate(){
+        const top = (Math.random() * 450 + 150);
+        target.style.opacity = "1";
+        target.style.top = top + "px";
+    }
+
+    let div = document.createElement('div');
+    document.body.append(div);
+    div.classList.add("shot");
+    div.style.display = "none";
+
+function shoot(){
+    div.style.left = "210px";
+    div.style.display = "block";
+    console.log(div);
+    const up = box.getBoundingClientRect().top;
+    const down = box.getBoundingClientRect().bottom;
+
+    div.style.top = `${(up + down) / 2}px`;
+
+    const goal_pos = target.getBoundingClientRect();
+
+    let pos = 0;
+    const interval = setInterval(() => {
+        pos += 10;
+        div.style.transform = `translateX(${pos}px)`
+        let curr_pos = div.getBoundingClientRect();
+        if (curr_pos.top > goal_pos.top && curr_pos.bottom < goal_pos.bottom &&
+            curr_pos.right > goal_pos.left){
+            clearInterval(interval);
+            div.style.display = "none";
+            div.style.left = "210px";
+            let op = 1;
+            const disappear = setInterval(() => {
+                op -= .1;
+                target.style.opacity = `${op}`
+                if (op <= 0) clearInterval(disappear)
+            }, 15)
+
+            score++;
+            scoreboard.innerText = score;
+
+            setTimeout(()=>{
+                generate();
+            }, 500)
+        }
+        if (pos >= 1200) {
+            clearInterval(interval)
+            div.style.display = "none";
+            div.style.left = "210px";
+            }
+        }, 10)
+    }
+
+</script>
+</body>
+</html>

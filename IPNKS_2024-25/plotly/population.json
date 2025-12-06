@@ -1,0 +1,37 @@
+[
+  {
+    "ageRange": "18-25",
+    "incomeData": [
+      { "occupation": "Engineer", "avgIncome": 50000, "people": 3000 },
+      { "occupation": "Teacher", "avgIncome": 40000, "people": 2000 },
+      { "occupation": "Student", "avgIncome": 10000, "people": 7000 }
+    ]
+  },
+  {
+    "ageRange": "26-35",
+    "incomeData": [
+      { "occupation": "Engineer", "avgIncome": 70000, "people": 5000 },
+      { "occupation": "Teacher", "avgIncome": 50000, "people": 4000 },
+      { "occupation": "Doctor", "avgIncome": 90000, "people": 3000 },
+      { "occupation": "Other", "avgIncome": 30000, "people": 6000 }
+    ]
+  },
+  {
+    "ageRange": "36-45",
+    "incomeData": [
+      { "occupation": "Engineer", "avgIncome": 80000, "people": 4000 },
+      { "occupation": "Teacher", "avgIncome": 55000, "people": 3000 },
+      { "occupation": "Doctor", "avgIncome": 95000, "people": 2000 },
+      { "occupation": "Other", "avgIncome": 40000, "people": 6000 }
+    ]
+  },
+  {
+    "ageRange": "46-60",
+    "incomeData": [
+      { "occupation": "Engineer", "avgIncome": 85000, "people": 2000 },
+      { "occupation": "Teacher", "avgIncome": 60000, "people": 3000 },
+      { "occupation": "Doctor", "avgIncome": 100000, "people": 1000 },
+      { "occupation": "Other", "avgIncome": 35000, "people": 4000 }
+    ]
+  }
+]

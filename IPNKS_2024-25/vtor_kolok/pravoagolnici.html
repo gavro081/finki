@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Rectangle App</title>
+		<style>
+			.all {
+				display: flex;
+				align-items: start;
+				gap: 50px;
+			}
+
+			.help {
+				display: flex;
+				justify-items: center;
+				align-items: center;
+			}
+			#container {
+				width: 800px;
+				height: 600px;
+				border: solid 1px black;
+				position: relative;
+				display: inline-block;
+			}
+			.box {
+				border: 1px solid black;
+				position: absolute;
+			}
+			#strike {
+				width: 7px;
+				background-color: #000;
+				height: 602px;
+				position: absolute;
+				top: 8px;
+				display: none;
+			}
+			#res {
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="all">
+			<div id="container"></div>
+			<div id="strike"></div>
+			<h2 id="res">Score: <span id="score-ctr">0</span></h2>
+		</div>
+		<div class="help">
+			<!--    za da ne se fetchnuva vo pozadina celo vreme koa stiskam cmd s-->
+			<button onclick="run()">Fetch</button>
+			<h3><---- Click this button to start</h3>
+		</div>
+		<script>
+			let score = 0;
+			let data;
+			const run = () => {
+				const url = "https://webhook.site/f498ff21-4865-4926-917a-c9f16fced471";
+				fetch(url)
+					.then((res) => res.json())
+					.then((json_data) => {
+						data = json_data;
+						drawBoard();
+						moveBoard();
+					})
+					.catch((err) => {
+						alert("error occured, webhook might not work anymore");
+					});
+			};
+
+			const drawBoard = () => {
+				for (let obj of data) {
+					let div = document.createElement("div");
+					console.log(obj);
+					div.classList.add("box");
+					div.setAttribute("dir", obj.dir);
+					div.setAttribute("score", obj.score);
+					div.setAttribute("id", obj.id);
+					div.setAttribute("way", "0");
+					div.style.height = obj.height;
+					div.style.width = obj.width;
+					div.style.top = obj.top + "px";
+					div.style.left = obj.left + "px";
+					div.style.backgroundColor = getRandomColor();
+					document.getElementById("container").appendChild(div);
+				}
+			};
+			let game = 0,
+				total = 0;
+			const moveBoard = () => {
+				let divs = document.getElementsByClassName("box");
+				for (let div of divs) {
+					if (div.getAttribute("dir") === "horizontal") {
+						let left = parseInt(div.style.left);
+						if (div.getAttribute("way") === "0") {
+							// 0 desno 1 levo
+							left += 5;
+							if (left + parseInt(div.style.width) > 795)
+								div.setAttribute("way", "1");
+						} else {
+							left -= 5;
+							if (left <= 0) div.setAttribute("way", "0");
+						}
+						div.style.left = `${left}px`;
+					} else {
+						let top = parseInt(div.style.top);
+						if (div.getAttribute("way") === "0") {
+							// 0 gore 1 dole
+							top += 5;
+							if (top + parseInt(div.style.height) > 595)
+								div.setAttribute("way", "1");
+						} else {
+							top -= 5;
+							if (top <= 0) div.setAttribute("way", "0");
+						}
+						div.style.top = `${top}px`;
+					}
+				}
+				game++;
+				if (game < 60) setTimeout(moveBoard, 30);
+				else {
+					game = 0;
+					total++;
+					strike();
+				}
+			};
+
+			const strike = () => {
+				let strike = document.getElementById("strike");
+				strike.style.left = Math.floor(Math.random() * 800) + "px";
+				strike.style.display = "block";
+				checkScore();
+				setTimeout(() => {
+					strike.style.display = "none";
+				}, 1300);
+				if (total !== 3) {
+					setTimeout(moveBoard, 1500);
+				} else setTimeout(() => alert("game over"), 1800);
+			};
+			const checkScore = () => {
+				let divs = document.getElementsByClassName("box");
+				let strike = document.getElementById("strike");
+				let strike_pos = parseInt(strike.style.left);
+				for (let div of divs) {
+					let divleft = parseInt(div.style.left);
+					let divright = divleft + parseInt(div.style.width);
+					if (divleft <= strike_pos && divright >= strike_pos + 7) {
+						// offset za sirinata na gromot
+						score += parseInt(div.getAttribute("score"));
+						div.style.display = "none";
+						div.setAttribute("score", "0");
+					}
+				}
+				document.getElementById("score-ctr").innerHTML = score;
+			};
+			const getRandomColor = () => {
+				let r = Math.floor(Math.random() * 255);
+				let g = Math.floor(Math.random() * 255);
+				let b = Math.floor(Math.random() * 255);
+				return `rgb(${r},${g},${b})`;
+			};
+		</script>
+	</body>
+</html>

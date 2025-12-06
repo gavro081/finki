@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prv kolok 2</title>
+</head>
+<style>
+    .container{
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        gap: 1rem;
+    }
+
+    .set{        
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #add{
+        align-self: flex-start;
+    }
+
+    table{
+        border-collapse: collapse;
+        width: 700px;
+        border: 1px solid black;
+    }
+
+    th, tr, td{
+        border: 1px solid black;
+    }
+
+    .t-un{
+        background-color: green;
+    }
+
+    .t-hr{
+        background-color: gray !important;
+    }
+
+    .st{
+        background-color: lightskyblue;
+    }
+</style>
+<body>
+    <h1 style="text-align: center;">Online classes</h1>
+    <div class="container">
+        <div class="set">
+            <label for="name">Name and surname</label>
+            <input type="text" id="name">
+        </div>
+        <div class="set">
+            <label for="email">email</label>
+            <input type="text" id="email">
+        </div>
+        <div class="set">
+            <label for="age">age</label>
+            <input type="text" id="age">
+        </div>
+        <div class="set">
+            <label for="username">username</label>
+            <input type="text" id="username">
+        </div>
+        <div class="set">
+            <label for="password">password</label>
+            <input type="password" id="password">
+        </div>
+        <div class="set">
+            <label for="role">role</label>
+            <select id="role">
+                <option>teacher</option>
+                <option>student</option>
+            </select>
+        </div>
+        <button id="add" onclick="add()">Add</button>
+    </div>
+    <p>Available teachers: <span id="available">0</span></p>
+    <h1>Users</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </table>
+    <script>
+        const table = document.querySelector("table");
+        let ctr = 0;
+        let counter = document.querySelector("#available");
+        let usernames = [];
+        function add(){
+            const name = document.querySelector("#name").value;
+            const username = document.querySelector("#username").value;
+            const email = document.querySelector("#email").value;
+            let age = document.querySelector("#age").value;
+            const role = document.querySelector("#role").value;
+            const password = document.querySelector("#password").value;
+            if (!name || !username || !email || !age){
+                alert("All inputs must be filled!")
+                return;
+            }
+            if (usernames.some((el) => el === username)){
+                alert("Oops. That username is already taken!");
+                return;
+            }
+
+            if (age < 18){
+                alert("Oops. You need to be at least 18 years old to enter.");
+                return;
+            }
+
+            if (!checkPass(password)){
+                alert("Oops. Your password needs to have be at least 10 characters long, have an uppercase letter and a digit.");
+                return;
+            }
+
+            usernames.push(username);
+
+            // let tr = document.createElement("tr");
+            const r = role === "student" ? "student" : "teacher";
+            tr = `<tr class="${r === "student" ? "st" : "t-un"}">
+            <td>${name}</td>
+            <td>${username}</td>
+            <td>${email}</td>
+            <td>${age}</td>
+            <td>${r}</td>
+            `;
+            if (r === "teacher") {
+                tr+=`<td><button id="hire" onclick="hire(this)">Hire</button></td></tr>`
+                counter.innerText = Number(counter.innerText) + 1;
+            }
+            else {
+                tr+= "</tr>";
+            }
+            table.innerHTML+=tr;
+        }
+
+        function checkPass(pass){
+            if (pass.length < 10) return false;
+            let num = false;
+            let upchar = false;
+            let letters = pass.split("");
+            pass = pass.toUpperCase();
+            letters.forEach((element,index) => {
+                if (Number(element) != NaN) num = true;
+                if (pass.charAt(index) === element) upchar = true;
+            });
+            return (num && upchar);
+        }
+
+        function hire(btn){
+            btn.parentNode.parentNode.classList.add("t-hr");
+            btn.remove();
+            counter.innerText = (Number(counter.innerText) == 0) ? 0 : (Number(counter.innerText) - 1);
+        }
+    </script>
+</body>
+</html>

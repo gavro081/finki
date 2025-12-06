@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>online shop</title>
+    <style>
+        .form{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 400px;
+            padding: 2rem;
+        }
+        .input{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        button{
+            align-self: start;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        tr,th,td{
+            border: 1px solid black;
+        }
+        .tables{
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 1fr 1fr;
+        }
+
+
+    </style>
+</head>
+<body>
+<h1 style="text-align: center">Online Shop</h1>
+<div class="form">
+    <div class="input">
+        <label>Name and surname</label>
+        <input type="text" id="name">
+    </div>
+    <div class="input">
+        <label>item</label>
+        <input type="text" id="item">
+    </div>
+    <div class="input">
+        <label>item code</label>
+        <input type="text" id="code">
+    </div>
+    <div class="input">
+        <label>item description</label>
+        <input type="text" id="desc">
+    </div>
+    <div class="input">
+        <label>price</label>
+        <input type="text" id="price">
+    </div>
+    <div class="input">
+        <label>used</label>
+        <select type="text" id="used">
+            <option>used</option>
+            <option>unused</option>
+        </select>
+    </div>
+    <button id="add" onclick="add()">Add</button>
+    <p>Active items: <span id="active">0</span></p>
+</div>
+<div class="tables">
+    <div>
+        <h3>Unused items</h3>
+        <table id="table1" title="">
+            <tr>
+                <th>Name</th>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Code</th>
+                <th>Number</th>
+                <th>Actions</th>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h3>Used items</h3>
+        <table id="table2">
+            <tr>
+                <th>Name</th>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Code</th>
+                <th>Number</th>
+                <th>Actions</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    const table1 = document.querySelector("#table1");
+    const table2 = document.querySelector("#table2");
+    let active = document.querySelector("#active");
+    let codes = [];
+    function add(){
+        const name = document.querySelector("#name").value;
+        const item = document.querySelector("#item").value;
+        const code = document.querySelector("#code").value;
+        const desc = document.querySelector("#desc").value;
+        let price = document.querySelector("#price").value;
+        const used = document.querySelector("#used").value;
+
+        if (!name || !item || !code || !desc || !price){
+            alert("all inputs must be filled!");
+            return;
+        }
+
+        if (codes.includes(code)){
+            alert("you must enter a unique code");
+            return;
+        }
+
+        if (price < 0){
+            alert("price must be a positive number!")
+            return;
+        }
+
+        price *= 1.1;
+        price = Math.round(price);
+        let catalog = trim(code);
+        newitem = `
+        <tr>
+            <td>${name}</td>
+            <td>${item}</td>
+            <td>${price}</td>
+            <td>${code}</td>
+            <td>${catalog}</td>
+            <td><button onclick="sell(this)">Sold</button></td>
+        </tr>
+        `
+
+        if (used === "used"){
+            table2.innerHTML += newitem;
+
+        }
+        else {
+            table1.innerHTML += newitem;
+        }
+
+        codes.push(code);
+        active.innerText = parseInt(active.innerText) + 1;
+
+    }
+
+    function trim(code){
+        let newcode = "";
+        let remove = "1234567890!";
+        for (let i = 0; i < code.length; i++) {
+            if (!remove.includes(code[i])) newcode += code[i];
+        }
+        return newcode;
+    }
+
+    function sell(obj){
+        let parent = obj.parentNode.parentNode;
+        parent.style.backgroundColor = "yellow";
+        parent.querySelector("button").remove();
+        active.innerText = active.innerText - 1;
+    }
+</script>
+</body>
+</html>

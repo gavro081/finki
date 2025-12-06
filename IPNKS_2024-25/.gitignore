@@ -1,0 +1,24 @@
+# macOS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS folder attributes
+Icon?
+._*
+
+# macOS Trash
+.Trashes
+
+# macOS Spotlight
+.Spotlight-V100
+.fseventsd
+
+# VSCode specific
+.vscode/
+.history/
+.code-workspace
+*.code-workspace
+.settings/
+.idea
+.idea/
