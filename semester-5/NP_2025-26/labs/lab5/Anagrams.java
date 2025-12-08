@@ -1,4 +1,4 @@
-package labs.labs5;
+package labs.lab5;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
