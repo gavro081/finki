@@ -1,5 +1,6 @@
 package mk.ukim.finki.wp.lab.web.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import mk.ukim.finki.wp.lab.model.Author;
 import mk.ukim.finki.wp.lab.model.Book;
@@ -7,6 +8,7 @@ import mk.ukim.finki.wp.lab.service.AuthorService;
 import mk.ukim.finki.wp.lab.service.BookService;
 import mk.ukim.finki.wp.lab.service.impl.AuthorServiceImpl;
 import mk.ukim.finki.wp.lab.service.impl.BookServiceImpl;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/books")
+@RequestMapping(value = {"/books", "/"})
 public class BookController {
     private final BookService bookService;
     private final AuthorService authorService;
@@ -29,10 +31,12 @@ public class BookController {
             @RequestParam(required = false) String error,
             @RequestParam(required = false) Double matchedRating,
             @RequestParam(required = false) String matchedText,
+            HttpServletRequest request,
             Model model){
         if (error != null && !error.isEmpty()){
             model.addAttribute("error", error);
         }
+        model.addAttribute("user", request.getRemoteUser());
         List<Book> books =
                 (matchedRating != null && matchedText != null)
                         ? bookService.searchBooks(matchedText, matchedRating)
@@ -42,6 +46,7 @@ public class BookController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
     public String saveBook(@RequestParam String title,
                            @RequestParam String genre,
                            @RequestParam Double averageRating,
@@ -58,6 +63,7 @@ public class BookController {
     }
 
     @GetMapping("/book-form/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String getEditBookForm(@PathVariable Long id, Model model){
         Book b = bookService.getById(id);
         if (b == null)
@@ -69,6 +75,7 @@ public class BookController {
     }
 
     @PostMapping("/edit/{bookId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String editBook(@PathVariable Long bookId,
                            @RequestParam String title,
                            @RequestParam String genre,
@@ -81,6 +88,7 @@ public class BookController {
     }
 
     @GetMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public String deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);

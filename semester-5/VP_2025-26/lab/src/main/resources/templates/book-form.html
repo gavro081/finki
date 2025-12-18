@@ -22,7 +22,7 @@
 </head>
 <body>
 <h3>Book form</h3>
-<form action="/books/add" method="POST">
+<form method="post" th:action="@{${book!=null ? '/books/edit/' + book.id : '/books/add'}}" class="book-form">
     <div class="input-box">
         <label for="title">Title:</label>
         <input id="title" type="text" name="title" required
