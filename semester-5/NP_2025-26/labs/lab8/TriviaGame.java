@@ -8,12 +8,21 @@ enum QUESTION_TYPE {
     FREEFORM
 }
 
-class TriviaQuestion {
-    public final String question;		// Actual question
-    public final String answer;		// Answer to question
-    public final int pointValue;		// Point value of question
-    public final QUESTION_TYPE type;	// Question type, TRUEFALSE or FREEFORM
+class TriviaQuestionFactory {
+    TriviaQuestion create(String question, String answer, int pointValue, QUESTION_TYPE type){
+        switch (type) {
+            case TRUEFALSE: return new TrueFalseTriviaQuestion(question, answer, pointValue);
+            case FREEFORM: return new FreeFormTriviaQuestion(question, answer, pointValue);
+            default: throw new IllegalArgumentException("Invalid question type:" + type);
+        }
+    }
+}
 
+abstract class TriviaQuestion {
+    public final String question;
+    public final String answer;
+    public final int pointValue;
+    public final QUESTION_TYPE type;
 
     public TriviaQuestion(String question, String answer, int pointValue, QUESTION_TYPE type) {
         this.question = question;
@@ -21,29 +30,51 @@ class TriviaQuestion {
         this.pointValue = pointValue;
         this.type = type;
     }
+
+    abstract void show();
 }
+
+class FreeFormTriviaQuestion extends TriviaQuestion {
+    public FreeFormTriviaQuestion(String question, String answer, int pointValue) {
+        super(question, answer, pointValue, QUESTION_TYPE.FREEFORM);
+    }
+
+    @Override
+    void show() {
+        System.out.println(this.question);
+    }
+}
+
+class TrueFalseTriviaQuestion extends TriviaQuestion {
+    public TrueFalseTriviaQuestion(String question, String answer, int pointValue) {
+        super(question, answer, pointValue, QUESTION_TYPE.TRUEFALSE);
+    }
+
+    @Override
+    void show() {
+        System.out.println(this.question);
+        System.out.println("Enter 'T' for true or 'F' for false.");
+    }
+}
+
 
 class TriviaData {
     private final ArrayList<TriviaQuestion> questions;
+    private final TriviaQuestionFactory factory = new TriviaQuestionFactory();
 
     public TriviaData() {
         questions = new ArrayList<>();
     }
 
     public void addQuestion(String question, String answer, int pointValue, QUESTION_TYPE type) {
-        TriviaQuestion newQuestion = new TriviaQuestion(question, answer, pointValue, type);
+        TriviaQuestion newQuestion = factory.create(question, answer, pointValue, type);
         questions.add(newQuestion);
     }
 
     public void showQuestion(int index) {
         TriviaQuestion q = questions.get(index);
         System.out.println("Question " + (index + 1) + ".  " + q.pointValue + " points.");
-        if (q.type == QUESTION_TYPE.TRUEFALSE) {
-            System.out.println(q.question);
-            System.out.println("Enter 'T' for true or 'F' for false.");
-        } else if (q.type == QUESTION_TYPE.FREEFORM) {
-            System.out.println(q.question);
-        }
+        q.show();
     }
 
     public int numQuestions() {
