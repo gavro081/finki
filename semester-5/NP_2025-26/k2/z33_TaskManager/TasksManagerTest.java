@@ -119,11 +119,11 @@ class PriorityDecorator extends TaskDecorator {
 }
 
 class DueDateDecorator extends TaskDecorator {
-    private LocalDateTime deadline;
+    private final LocalDateTime deadline;
 
     public DueDateDecorator(ITask decoratedTask, LocalDateTime dueDate) throws DeadlineNotValidException {
         super(decoratedTask);
-        if (dueDate.isBefore(LocalDateTime.of(2020,6,2, 0,0))){
+        if (dueDate.isBefore(LocalDateTime.of(2020, 6, 2, 0, 0))) {
             throw new DeadlineNotValidException(dueDate);
         }
         this.deadline = dueDate;
@@ -162,6 +162,29 @@ class DueDateDecorator extends TaskDecorator {
     }
 }
 
+class TaskFactory {
+    public static ITask createTask(String line) {
+        String[] parts = line.split(",");
+        ITask t = new Task(parts[0], parts[1], parts[2]);
+        if (parts.length >= 4) {
+            if (parts[3].contains(":")) {
+                try {
+                    t = new DueDateDecorator(t, LocalDateTime.parse(parts[3]));
+                } catch (DeadlineNotValidException e) {
+                    System.out.println(e.getMessage());
+                    return null;
+                }
+                if (parts.length >= 5) {
+                    return new PriorityDecorator(t, Integer.parseInt(parts[4]));
+                }
+            } else {
+                return new PriorityDecorator(t, Integer.parseInt(parts[3]));
+            }
+        }
+        return t;
+    }
+}
+
 class TaskManager {
     private final Map<String, List<ITask>> tasks;
 
@@ -169,34 +192,22 @@ class TaskManager {
         this.tasks = new TreeMap<>();
     }
 
-    void readTasks(InputStream inputStream) throws IOException, DeadlineNotValidException {
+    void readTasks(InputStream inputStream) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         String line;
         while ((line = br.readLine()) != null && !line.isEmpty()) {
-            String[] parts = line.split(",");
-            ITask t = new Task(parts[0], parts[1], parts[2]);
-            if (parts.length >= 4) {
-                if (parts[3].contains(":")) {
-                    try {
-                        t = new DueDateDecorator(t, LocalDateTime.parse(parts[3]));
-                    } catch (DeadlineNotValidException e) {
-                        System.out.println(e.getMessage());
-                        continue;
-                    }
-                    if (parts.length >= 5) {
-                        t = new PriorityDecorator(t, Integer.parseInt(parts[4]));
-                    }
-                } else {
-                    t = new PriorityDecorator(t, Integer.parseInt(parts[3]));
-                }
-            }
-            tasks.putIfAbsent(parts[0], new ArrayList<>());
-            tasks.get(parts[0]).add(t);
+            ITask t = TaskFactory.createTask(line);
+            if (t == null) continue;
+            tasks.computeIfAbsent(t.getCategory(), x -> new ArrayList<>()).add(t);
+
+            // posigurna opcija
+//            tasks.putIfAbsent(t.getCategory(), new ArrayList<>());
+//            tasks.get(t.getCategory()).add(t);
         }
 
     }
 
-    void printTasks(OutputStream os, boolean includePriority, boolean includeCategory) throws IOException {
+    void printTasks(OutputStream os, boolean includePriority, boolean includeCategory) {
         PrintWriter pw = new PrintWriter(os);
         LocalDateTime now = LocalDateTime.now();
 
@@ -225,7 +236,7 @@ class TaskManager {
 
 public class TasksManagerTest {
 
-    public static void main(String[] args) throws IOException, Exception {
+    public static void main(String[] args) throws Exception {
 
         TaskManager manager = new TaskManager();
 
