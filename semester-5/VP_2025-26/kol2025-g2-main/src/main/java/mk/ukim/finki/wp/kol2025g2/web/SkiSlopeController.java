@@ -42,6 +42,7 @@ public class SkiSlopeController {
                           Model model) {
         Page<SkiSlope> slopes = skiSlopeService.findPage(name, length, difficulty, skiResort, pageNum - 1, pageSize);
         model.addAttribute("slopes", slopes);
+        model.addAttribute("page", slopes);
         model.addAttribute("difficulties", SlopeDifficulty.values());
         model.addAttribute("resorts", skiResortService.listAll());
         return "list";
