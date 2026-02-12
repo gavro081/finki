@@ -25,3 +25,5 @@ All tracked exercises for my undergrad courses at FCSE.
 - [Advanced Programming](https://github.com/gavro081/finki/tree/main/semester-5/NP_2025-26)
 - [Web Programming](https://github.com/gavro081/finki/tree/main/semester-5/VP_2025-26)
 - [Intro to Data Science](https://github.com/gavro081/finki/tree/main/semester-5/VNP_2025-26)
+- [Distributed Systems](https://github.com/gavro081/finki/tree/main/semester-5/DS_2025-26)
+- [Software Design and Architecture](https://github.com/gavro081/finki/tree/main/semester-5/DAS_2025-26)
