@@ -21,27 +21,6 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-
-// try
-// {
-//     using var cnx = new SqliteConnection(connectionString);
-//
-//     var evolve = new Evolve(cnx, msg => Console.WriteLine(msg))
-//     {
-//         Locations = new[] { "Database/Migrations" },
-//         IsEraseDisabled = true,
-//         OutOfOrder = true
-//     };
-//
-//     evolve.Migrate();
-// }
-// catch (Exception ex)
-// {
-//     Console.WriteLine("Migration failed");
-//     Console.WriteLine(ex);
-//     throw;
-// }
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
