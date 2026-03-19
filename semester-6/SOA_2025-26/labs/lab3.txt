@@ -1,0 +1,69 @@
+1.1 - Identity
+
+What is the name of your aggregate?
+- ThesisProgress
+
+What real-world entity does it represent?
+- The progress of a thesis over time, different drafts, a final submission and whether prerequisites are satisfied.
+
+What is a natural unique identifier for it (e.g. a student index number, a course code)?
+- Student index 
+
+1.2 - State
+
+List all the fields your aggregate needs to hold in order to fulfil its responsibility. For each field, note:
+
+Its name
+
+Its type (primitive, value object, or reference to another aggregate via a typed ID)
+
+Whether it can change after creation
+
+- thesisProgressId - uuid - immutable
+- mentorId - uuid - immutable
+- studentId - string - immutable
+- acceptedByMentor - boolean - mutable
+- thesisDrafts - List<Drafts> - mutable  (Drafts should include the document id as well as comments)
+- commitedThesis - DocumentId
+- comment - string - mutable
+
+1.3 - Relationships
+
+Look at the domain diagram. Identify:
+
+Which aggregates send data into yours (incoming arrows)
+- ThesisProposal
+Which aggregates your aggregate sends data to (outgoing 
+- ThesisDefense
+For each relationship, describe in one sentence what the dependency means
+- Once thesis proposals are accepted their progress can start being tracked ( ThesisProposal -> ThesisProgress)
+- Once the thesis is completed and all conditions are met, it could then be defended by the candidate ( ThesisProgress -> ThesisDefense)
+  
+2.2
+Why is require(...) placed in the value object constructor rather than in the command handler?
+- Placing validation require(...) in the constructor enforces invariants at the very moment the object is created. This guarantees that it is impossible to instantiate an invalid Value Object.
+
+What is the difference between a value object and an entity in DDD? Give an example from your aggregate of each.
+- An entity is defined by a unique identity that persists over time and it can be mutable, whereas value objects defined strictly by its attributes, not by an identity and it is immutable. Examples of an entity is ThesisProgress and of a value object - ThesisComment.
+
+3.3
+1. After sending three update commands and one status command to a single aggregate instance, how many rows exist in DOMAIN_EVENT_ENTRY for that aggregate ID? What does this tell you about how Axon reconstructs the current state?
+- There will be 5 rows in DOMAIN_EVENT_ENTRY (1 creation event + 3 update events + 1 status event). This shows that Axon persists every state change as a unique event in the event store. To reconstruct the current state for command processing, Axon loads the current snapshot directly from the thesis_progress table using JPA, rather than replaying the 5 events from DOMAIN_EVENT_ENTRY. 
+
+2. Why must the guard check be placed in the @CommandHandler and not in the on(event) method?
+- Commands represent intent and events represent facts. a command is a request to do something, which can be rejected. therefore, validation/guards belong here to decide if the event should happen. the on(event) method is called when reloading the aggregate, if validation logic is put here that throws an exception, it might break the ability to load a valid existing aggregate from the database/event store. 
+
+4.3
+1. Why does @Immutable improve performance here? What does Hibernate skip when it knows an entity will never be modified?
+- @Immutable improves performance because Hibernate knows the entity will never be updated, so it can skip dirty checking, snapshot storage for change detection, and flush-time update processing for those instances.
+
+2. The view and the aggregate map to the same table. What is one advantage and one risk of this design?
+- One advantage of mapping the view and aggregate to the same table is simplicity: no projection sync process is needed, and reads always reflect the latest persisted aggregate state. 
+One risk is coupling: the read model becomes tightly tied to the write-side schema, so schema changes or write-side optimizations can easily break query needs or make the read model less efficient/flexible.
+
+5.3
+1. `sendAndWait` blocks the event handler thread. What would happen if your handler processed 200 records sequentially with sendAndWait? What alternatives exist?
+- If the handler processed 200 records sequentially with sendAndWait, it would block the event-handler thread until all 200 commands finished, which increases latency and can reduce throughput for the whole processor. Alternatives include splitting work into smaller batches, using send(...) asynchronously, publishing a follow-up process event for parallel workers, or modeling the coordination by using the saga pattern.
+
+2. Why is it wrong to inject and call the aggregate's Axon repository directly inside an event handler instead of going through the command gateway?
+- It is because that bypasses the command model. The command gateway enforces routing, validation, interceptors, auditing, and aggregate consistency rules. If the handler loaded aggregates directly and called methods itself, it would "bypass" the normal command-processing lifecycle that CQRS and Axon are built around.
