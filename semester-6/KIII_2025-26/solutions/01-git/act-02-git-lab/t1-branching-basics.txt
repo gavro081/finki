@@ -1,0 +1,22 @@
+Filip@filip's macbook pro test-1 % touch file1.txt
+Filip@filip's macbook pro test-1 % git add .
+Filip@filip's macbook pro test-1 % git commit -m "commit from main"
+[main (root-commit) dce07df] commit from main
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file1.txt
+Filip@filip's macbook pro test-1 % git checkout -b branch2
+Switched to a new branch 'branch2'
+Filip@filip's macbook pro test-1 % touch file2.txt
+Filip@filip's macbook pro test-1 % git add .
+Filip@filip's macbook pro test-1 % git commit -m "commit from other branch"
+[branch2 d3aaac5] commit from other branch
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file2.txt
+Filip@filip's macbook pro test-1 % git checkout main 
+Switched to branch 'main'
+Filip@filip's macbook pro test-1 % git merge branch2 
+Updating dce07df..d3aaac5
+Fast-forward
+ file2.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file2.txt

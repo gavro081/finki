@@ -1,0 +1,23 @@
+Filip@filip's macbook pro Desktop % docker run --name myubuntu -it ubuntu:22.04 /bin/bash
+root@2b7c4922bfde:/# 
+exit
+Filip@filip's macbook pro Desktop % docker start myubuntu
+myubuntu
+Filip@filip's macbook pro Desktop % docker attach myubuntu
+root@2b7c4922bfde:/# ^C     
+root@2b7c4922bfde:/#    
+exit
+Filip@filip's macbook pro Desktop % docker stop myubuntu
+myubuntu
+Filip@filip's macbook pro Desktop % docker logs myubuntu
+root@2b7c4922bfde:/# 
+exit
+root@2b7c4922bfde:/# ^C     
+root@2b7c4922bfde:/#    
+exit
+Filip@filip's macbook pro Desktop % docker logs myubuntu
+root@2b7c4922bfde:/# 
+exit
+root@2b7c4922bfde:/# ^C     
+root@2b7c4922bfde:/#    
+exit

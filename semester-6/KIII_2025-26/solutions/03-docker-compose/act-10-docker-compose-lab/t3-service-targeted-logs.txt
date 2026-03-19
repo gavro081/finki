@@ -1,0 +1,72 @@
+Filip@filip's macbook pro compose-lab % docker compose logs web
+web-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+web-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+web-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+web-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+web-1  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+web-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+web-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+web-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+web-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: using the "epoll" event method
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: nginx/1.29.6
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) 
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: OS: Linux 6.10.14-linuxkit
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker processes
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 30
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 31
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 32
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 33
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 34
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 35
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 36
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 37
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 38
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 39
+web-1  | 2026/03/19 13:07:26 [notice] 1#1: start worker process 40
+web-1  | 2026/03/19 13:07:30 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+web-1  | 2026/03/19 13:07:30 [notice] 36#36: gracefully shutting down
+web-1  | 2026/03/19 13:07:30 [notice] 36#36: exiting
+web-1  | 2026/03/19 13:07:30 [notice] 34#34: gracefully shutting down
+web-1  | 2026/03/19 13:07:30 [notice] 35#35: gracefully shutting down
+web-1  | 2026/03/19 13:07:30 [notice] 30#30: gracefully shutting down
+web-1  | 2026/03/19 13:07:30 [notice] 38#38: gracefully shutting down
+web-1  | 2026/03/19 13:07:30 [notice] 33#33: gracefully shutting down
+web-1  | 2026/03/19 13:07:30 [notice] 32#32: gracefully shutting down
+web-1  | 2026/03/19 13:07:30 [notice] 30#30: exiting
+web-1  | 2026/03/19 13:07:30 [notice] 35#35: exiting
+web-1  | 2026/03/19 13:07:30 [notice] 34#34: exiting
+web-1  | 2026/03/19 13:07:30 [notice] 38#38: exiting
+web-1  | 2026/03/19 13:07:30 [notice] 40#40: gracefully shutting down
+web-1  | 2026/03/19 13:07:30 [notice] 33#33: exiting
+web-1  | 2026/03/19 13:07:30 [notice] 32#32: exiting
+web-1  | 2026/03/19 13:07:30 [notice] 40#40: exiting
+web-1  | 2026/03/19 13:07:30 [notice] 36#36: exit
+web-1  | 2026/03/19 13:07:30 [notice] 33#33: exit
+web-1  | 2026/03/19 13:07:30 [notice] 30#30: exit
+...
+Filip@filip's macbook pro compose-lab % docker compose logs redis
+redis-1  | Starting Redis Server
+redis-1  | 1:C 19 Mar 2026 13:06:43.325 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1  | 1:C 19 Mar 2026 13:06:43.325 * Redis version=8.6.1, bits=64, commit=00000000, modified=1, pid=1, just started
+redis-1  | 1:C 19 Mar 2026 13:06:43.325 * Configuration loaded
+redis-1  | 1:M 19 Mar 2026 13:06:43.325 * monotonic clock: ARM CNTVCT @ 24 ticks/us
+redis-1  | 1:M 19 Mar 2026 13:06:43.326 * Running mode=standalone, port=6379.
+redis-1  | 1:M 19 Mar 2026 13:06:43.326 * <bf> RedisBloom version 8.6.0 (Git=unknown)
+redis-1  | 1:M 19 Mar 2026 13:06:43.326 * <bf> Registering configuration options: [
+redis-1  | 1:M 19 Mar 2026 13:06:43.326 * <bf> 	{ bf-error-rate       :      0.01 }
+...
+
+Filip@filip's macbook pro compose-lab % docker compose ps
+NAME                  IMAGE          COMMAND                  SERVICE   CREATED         STATUS         PORTS
+compose-lab-redis-1   redis:alpine   "docker-entrypoint.s…"   redis     7 minutes ago   Up 4 minutes   6379/tcp
+compose-lab-web-1     nginx:alpine   "/docker-entrypoint.…"   web       6 minutes ago   Up 4 minutes   80/tcp, 0.0.0.0:5006->5005/tcp
+
+EXPLANATION FOR PART 3:
+- NAME represents the container name created by docker compose which is used to identify and manage the container - in this case
+the names are `compose-lab-redis-1` and `compose-lab-web-1`.
+- STATE represents the current lifecycle state of the container, in this case both statuses say the  containers are up, and it states how long they are up (4 minutes).
+- PORTS are the port mappings between the host and the container. 
+in this case the redis container exposes port 6379 internally, but there is no host mapping so it is only accessible within the Docker network.
+for the web container, it exposes port 80 internally, without a direct host mapping. port 5005 inside the container is mapped to port 5006 on my host machine. 0.0.0.0 means it’s accessible from any network interface on your machine.

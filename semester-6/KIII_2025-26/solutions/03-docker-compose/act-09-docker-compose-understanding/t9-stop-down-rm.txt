@@ -1,0 +1,37 @@
+input: docker compose up -d
+output:
+WARN[0000] /Users/Filip/Desktop/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Running 2/2
+ ✔ Container desktop-redis-1  Started                                      0.1s 
+ ✔ Container desktop-web-1    Started                                      0.1s 
+
+input:  docker compose stop
+output:
+WARN[0000] /Users/Filip/Desktop/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Stopping 2/2
+ ✔ Container desktop-web-1    Stopped                                      0.2s 
+ ✔ Container desktop-redis-1  Stopped                                      0.2s 
+
+note: stops running containers but does not remove them, networks, or volumes.
+
+input:  docker compose ps
+output:
+WARN[0000] /Users/Filip/Desktop/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS
+note: shows the current state of containers; after stopping, no running containers are listed.
+
+input:  docker compose rm -f
+output:
+WARN[0000] /Users/Filip/Desktop/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+Going to remove desktop-web-1, desktop-redis-1
+[+] Removing 2/2
+ ✔ Container desktop-redis-1  Removed                                      0.0s 
+ ✔ Container desktop-web-1    Removed                                      0.0s 
+note: removes stopped containers but does not remove networks, volumes, or images.
+
+input:  docker compose down
+output:
+WARN[0000] /Users/Filip/Desktop/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Running 1/1
+ ✔ Network desktop_default  Removed  
+note: stops (if needed) and removes containers, networks, and default resources created by compose, but does not remove images unless explicitly specified.

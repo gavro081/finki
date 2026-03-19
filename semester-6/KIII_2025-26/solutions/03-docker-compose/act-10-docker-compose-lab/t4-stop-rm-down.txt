@@ -1,0 +1,24 @@
+Filip@filip's macbook pro compose-lab % docker compose stop
+[+] Stopping 2/2
+ ✔ Container compose-lab-redis-1  Stopped                                          0.1s 
+ ✔ Container compose-lab-web-1    Stopped                                          0.2s 
+NOTE: `docker compose stop` stops running containers but keeps them and all associated resources. they can be restarted.
+
+Filip@filip's macbook pro compose-lab % docker compose ps
+NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS
+Filip@filip's macbook pro compose-lab % docker compose rm -f
+Going to remove compose-lab-web-1, compose-lab-redis-1
+[+] Removing 2/2
+ ✔ Container compose-lab-web-1    Removed                                          0.0s 
+ ✔ Container compose-lab-redis-1  Removed                                          0.0s 
+NOTE: `docker compose rm -f` removes stopped containers, but leaves networks, volumes and images. 
+Filip@filip's macbook pro compose-lab % docker compose up -d
+[+] Running 2/2
+ ✔ Container compose-lab-web-1    Started                                          0.1s 
+ ✔ Container compose-lab-redis-1  Started                                          0.1s 
+Filip@filip's macbook pro compose-lab % docker compose down
+[+] Running 3/3
+ ✔ Container compose-lab-web-1    Removed                                          0.2s 
+ ✔ Container compose-lab-redis-1  Removed                                          0.2s 
+ ✔ Network compose-lab_default    Removed  
+NOTE: `docker compose down` fully cleans the environment by stopping and removing containers and the project network.

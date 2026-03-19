@@ -1,0 +1,22 @@
+Filip@filip's macbook pro test-2 % git init
+Initialized empty Git repository in /Users/Filip/Desktop/test-2/.git/
+Filip@filip's macbook pro test-2 % nano README.md
+Filip@filip's macbook pro test-2 % git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+Filip@filip's macbook pro test-2 % git add README.md 
+Filip@filip's macbook pro test-2 % git status -s
+A  README.md
+Filip@filip's macbook pro test-2 % git commit -m "Initial commit"
+[main (root-commit) 1ba92b5] Initial commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+Filip@filip's macbook pro test-2 % git log --oneline
+1ba92b5 (HEAD -> main) Initial commit

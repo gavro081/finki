@@ -1,0 +1,19 @@
+command: git remote -v
+command: git remote add origin https://github.com/gavro081/test-123.git
+command: git remote -v
+output:
+origin	https://github.com/gavro081/test-123.git (fetch)
+origin	https://github.com/gavro081/test-123.git (push)
+command: git push -u origin main
+
+output:
+Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 11 threads
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (12/12), 999 bytes | 999.00 KiB/s, done.
+Total 12 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), done.
+To https://github.com/gavro081/test-123.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.

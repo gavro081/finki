@@ -1,0 +1,14 @@
+Filip@filip's macbook pro Desktop % mkdir nginx-volume-test && cd nginx-volume-test
+Filip@filip's macbook pro nginx-volume-test % touch index.html
+Filip@filip's macbook pro nginx-volume-test % nano index.html 
+Filip@filip's macbook pro nginx-volume-test % docker run -d -p 8085:80 -v $(pwd)/index.html:/usr/share/nginx/html/index.html nginx:alpine
+Unable to find image 'nginx:alpine' locally
+alpine: Pulling from library/nginx
+Digest: sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba
+Status: Downloaded newer image for nginx:alpine
+0859c63e789cbe91b4319029a01e5dceea7bebb657ccda261002ca068c777ea0
+Filip@filip's macbook pro nginx-volume-test % curl http://localhost:8085
+<h1>Hello from Volume Page</h1>
+Filip@filip's macbook pro nginx-volume-test % nano index.html 
+Filip@filip's macbook pro nginx-volume-test % curl http://localhost:8085
+<h1>Updated Volume Page</h1>

@@ -1,0 +1,33 @@
+Filip@filip's macbook pro Desktop % mkdir docker-lab
+Filip@filip's macbook pro Desktop % cd docker-lab 
+Filip@filip's macbook pro docker-lab % touch Dockerfile
+Filip@filip's macbook pro docker-lab % edit Dockerfile 
+Filip@filip's macbook pro docker-lab % ls
+Dockerfile
+Filip@filip's macbook pro docker-lab % docker build -t docker-lab-nginx:v1 .
+[+] Building 4.4s (6/6) FINISHED                                                                                docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                            0.0s
+ => => transferring dockerfile: 405B                                                                                            0.0s
+ => [internal] load metadata for docker.io/library/nginx:alpine                                                                 3.0s
+ => [internal] load .dockerignore                                                                                               0.0s
+ => => transferring context: 2B                                                                                                 0.0s
+ => [1/2] FROM docker.io/library/nginx:alpine@sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba           1.2s
+ => => resolve docker.io/library/nginx:alpine@sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba           0.0s
+ => => sha256:da8475fa07c770fbfdc5a1bbb5cbd8c44fea3c125feb65eb76a1c199c85184bd 19.71MB / 19.71MB                                1.0s
+ => => extracting sha256:da8475fa07c770fbfdc5a1bbb5cbd8c44fea3c125feb65eb76a1c199c85184bd                                       0.2s
+ => [2/2] RUN echo "Hello from Docker Lab" > /usr/share/nginx/html/index.html                                                   0.1s
+ => exporting to image                                                                                                          0.0s
+ => => exporting layers                                                                                                         0.0s
+ => => exporting manifest sha256:bb62415b177867e6c170448a18498d83b968e9b0dd0a8cca476bf7bf13c72615                               0.0s
+ => => exporting config sha256:e84b6566c55301769610f63774e6653611d6a4398334a3f864b16ab9ac1bf32f                                 0.0s
+ => => exporting attestation manifest sha256:25b5c4d570e8ff973753a9db8fedc5f2b7cfd08d1a50cec78cb121a921fda6c9                   0.0s
+ => => exporting manifest list sha256:c1a51f75417587cf5c64f56c5d343e966f123270d1675fc8b7e76cb931d96e76                          0.0s
+ => => naming to docker.io/library/docker-lab-nginx:v1                                                                          0.0s
+ => => unpacking to docker.io/library/docker-lab-nginx:v1                                                                       0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/fj3b91s5gqw0bigudjugwo3mu
+Filip@filip's macbook pro docker-lab % docker images
+REPOSITORY         TAG       IMAGE ID       CREATED         SIZE
+docker-lab-nginx   v1        c1a51f754175   2 seconds ago   91.7MB
+nginx              latest    0236ee02dcbc   13 days ago     255MB
+ubuntu             22.04     3ba65aa20f86   4 weeks ago     106MB

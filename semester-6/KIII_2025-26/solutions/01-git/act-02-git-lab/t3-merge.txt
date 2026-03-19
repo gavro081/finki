@@ -1,0 +1,49 @@
+Filip@filip's macbook pro test-1 % git checkout -b topic
+Switched to a new branch 'topic'
+Filip@filip's macbook pro test-1 % nano a.txt
+Filip@filip's macbook pro test-1 % git add . 
+Filip@filip's macbook pro test-1 % git commit -m "update file"
+[topic 2e152b9] update file
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Filip@filip's macbook pro test-1 % git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+Filip@filip's macbook pro test-1 % nano a.txt 
+Filip@filip's macbook pro test-1 % git add .
+Filip@filip's macbook pro test-1 % git commit -m "update file from main"
+[main 5f16a5b] update file from main
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Filip@filip's macbook pro test-1 % git merge topic 
+Auto-merging a.txt
+CONFLICT (content): Merge conflict in a.txt
+Automatic merge failed; fix conflicts and then commit the result.
+Filip@filip's macbook pro test-1 % nano a.txt
+Filip@filip's macbook pro test-1 % git merge topic 
+error: Merging is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+Filip@filip's macbook pro test-1 % git add .
+Filip@filip's macbook pro test-1 % git commit -m "merged"
+[main bf6101d] merged
+Filip@filip's macbook pro test-1 % git status
+On branch main
+Your branch is ahead of 'origin/main' by 4 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+Filip@filip's macbook pro test-1 % git log --oneline --decorate --graph
+*   bf6101d (HEAD -> main) merged
+|\  
+| * 2e152b9 (topic) update file
+* | 5f16a5b update file from main
+|/  
+* ab7134a first
+*   539137e (origin/main) Merge branch 'topic'
+|\  
+| * 20b4c93 commit from topic
+* | 3051385 other commit from main
+|/  
+* d3aaac5 (branch2) commit from other branch
+* dce07df commit from main

@@ -1,0 +1,15 @@
+Filip@filip's macbook pro docker-lab % docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+66a4bbbfab88: Pull complete 
+Digest: sha256:d1e2e92c075e5ca139d51a140fff46f84315c0fdce203eab2807c7e495eff4f9
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+Filip@filip's macbook pro docker-lab % docker run -it ubuntu /bin/bash
+root@36722822182e:/# 
+exit
+Filip@filip's macbook pro docker-lab % docker ps -a
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS                        PORTS     NAMES
+36722822182e   ubuntu         "/bin/bash"   8 seconds ago    Exited (0) 3 seconds ago                pensive_nightingale
+2b7c4922bfde   ubuntu:22.04   "/bin/bash"   13 minutes ago   Exited (130) 13 minutes ago             myubuntu
+def62e1ac1ef   ubuntu:22.04   "/bin/bash"   16 minutes ago   Exited (130) 16 minutes ago             laughing_noyce

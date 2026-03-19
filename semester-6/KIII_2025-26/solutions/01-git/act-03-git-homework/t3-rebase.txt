@@ -1,0 +1,72 @@
+command: git log --oneline --decorate --graph  
+output:
+* 88c952a (HEAD -> main) commit from main
+* d284c08 commit 2 from topic
+* 321c2de commit 1 from topic
+*   bf6101d (tag: v1.4, origin/main) merged
+|\  
+| * 2e152b9 update file
+* | 5f16a5b update file from main
+|/  
+* ab7134a first
+*   539137e Merge branch 'topic'
+|\  
+| * 20b4c93 commit from topic
+* | 3051385 other commit from main
+|/  
+* d3aaac5 (branch2) commit from other branch
+* dce07df commit from main
+command: git checkout -b topic
+output:
+Switched to a new branch 'topic'
+command: nano d.txt
+command: git add .
+command: git commit -m "commit 1 from topic"
+output:
+[topic a6ab129] commit 1 from topic
+ 1 file changed, 1 insertion(+)
+command: git checkout topic 
+Switched to branch 'topic'
+command: nano f.txt
+command: git add .
+command: git commit -m "commit number 2 from topic"
+output:
+[topic 1d6d2ae] commit number 2 from topic
+ 1 file changed, 1 insertion(+)
+ create mode 100644 f.txt
+command: git checkout main
+output:
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 3 commits.
+  (use "git push" to publish your local commits)
+command: nano g.txt
+command: git add .
+command: git commit -m "comitting from the main branch"
+output:
+[main 49d5248] comitting from the main branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 g.txt
+command: git rebase topic 
+output:
+Successfully rebased and updated refs/heads/main.
+command: git log --oneline --decorate --graph 
+output:
+* f0d1cae (HEAD -> main) comitting from the main branch
+* 1d6d2ae (topic) commit number 2 from topic
+* a6ab129 commit 1 from topic
+* 88c952a commit from main
+* d284c08 commit 2 from topic
+* 321c2de commit 1 from topic
+*   bf6101d (tag: v1.4, origin/main) merged
+|\  
+| * 2e152b9 update file
+* | 5f16a5b update file from main
+|/  
+* ab7134a first
+*   539137e Merge branch 'topic'
+|\  
+| * 20b4c93 commit from topic
+* | 3051385 other commit from main
+|/  
+* d3aaac5 (branch2) commit from other branch
+* dce07df commit from main

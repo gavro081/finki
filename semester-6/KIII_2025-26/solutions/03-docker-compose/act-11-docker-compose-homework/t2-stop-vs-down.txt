@@ -1,0 +1,23 @@
+Filip@filip's macbook pro compose-homework-app % docker compose up -d
+[+] Running 2/2
+ ✔ Container compose-homework-app-redis-1  Running                                 0.0s 
+ ✔ Container compose-homework-app-web-1    Running                                 0.0s 
+Filip@filip's macbook pro compose-homework-app % docker compose stop
+[+] Stopping 2/2
+ ✔ Container compose-homework-app-web-1    Stopped                                10.1s 
+ ✔ Container compose-homework-app-redis-1  Stopped                                 0.1s 
+Filip@filip's macbook pro compose-homework-app % docker compose ps   
+NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS
+Filip@filip's macbook pro compose-homework-app % docker compose up -d
+[+] Running 2/2
+ ✔ Container compose-homework-app-web-1    Started                                 0.1s 
+ ✔ Container compose-homework-app-redis-1  Started                                 0.1s 
+Filip@filip's macbook pro compose-homework-app % docker compose down
+[+] Running 3/3
+ ✔ Container compose-homework-app-redis-1  Removed                                 0.2s 
+ ✔ Container compose-homework-app-web-1    Removed                                10.2s 
+ ✔ Network compose-homework-app_default    Removed                                 0.2s 
+Filip@filip's macbook pro compose-homework-app % docker compose ps   
+NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS
+
+After stop the containers were stopped but network remained, but after down both the containers, and the network were removed

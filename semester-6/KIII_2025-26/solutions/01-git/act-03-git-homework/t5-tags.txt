@@ -1,0 +1,28 @@
+command: git tag -a v1.4 -m "my version 1.4"
+
+command:
+git show v1.4 
+output:
+tag v1.4
+Tagger: Filip Gavrilovski <filipgavrilovski28@gmail.com>
+Date:   Mon Mar 2 19:43:32 2026 +0100
+
+my version 1.4
+
+commit bf6101d068de3673e42a36012a95d7f8b0b88c86 (HEAD -> main, tag: v1.4, topic)
+Merge: 5f16a5b 2e152b9
+Author: Filip Gavrilovski <filipgavrilovski28@gmail.com>
+Date:   Mon Mar 2 19:30:35 2026 +0100
+
+    merged
+
+diff --cc a.txt
+index 039efd8,5ec7a6d..e30b8ca
+--- a/a.txt
++++ b/a.txt
+@@@ -1,3 -1,3 +1,4 @@@
+  xxx
+- xxxyz
+ -xyx
+++xxxyzxyx
+++topic

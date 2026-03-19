@@ -1,0 +1,64 @@
+Filip@filip's macbook pro Desktop % mkdir compose-lab
+Filip@filip's macbook pro Desktop % cd compose-lab 
+Filip@filip's macbook pro compose-lab % nano docker-compose.yml
+Filip@filip's macbook pro compose-lab % cat docker-compose.yml 
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/composeapp
+
+  redis:
+    image: redis:alpine
+Filip@filip's macbook pro compose-lab % docker compose version
+Docker Compose version v2.35.1-desktop.1
+Filip@filip's macbook pro compose-lab % docker compose up      
+[+] Running 2/2
+ ✔ Container compose-lab-redis-1  Runni...                                 0.0s 
+ ✔ Container compose-lab-web-1    Recreat...                               0.1s 
+Attaching to redis-1, web-1
+web-1    | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+web-1    | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+web-1    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+web-1    | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+web-1    | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+web-1    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+web-1    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+web-1    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+web-1    | /docker-entrypoint.sh: Configuration complete; ready for start up
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: using the "epoll" event method
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: nginx/1.29.6
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) 
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: OS: Linux 6.10.14-linuxkit
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker processes
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 30
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 31
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 32
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 33
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 34
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 35
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 36
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 37
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 38
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 39
+web-1    | 2026/03/19 13:07:26 [notice] 1#1: start worker process 40
+Gracefully stopping... (press Ctrl+C again to force)
+[+] Stopping 2/2
+ ✔ Container compose-lab-redis-1  Stopp...                                 0.2s 
+ ✔ Container compose-lab-web-1    Stopped                                  0.2s 
+Filip@filip's macbook pro compose-lab % cat docker-compose.yml 
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/composeapp
+
+  redis:
+    image: redis:alpine
+
+

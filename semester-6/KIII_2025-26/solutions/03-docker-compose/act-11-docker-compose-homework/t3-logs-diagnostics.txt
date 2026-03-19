@@ -1,0 +1,66 @@
+Filip@filip's macbook pro compose-homework-app % docker compose up -d 
+[+] Running 2/4
+ ✔ Network compose-homework-app_default                                                                                                               Created0.0s 
+ ⠋ Container compose-homework-app-web-1                                                 [+] Running 4/4                                               Starting0.0s 
+ ✔ Network compose-homework-app_default                                                                                                               Created0.0s  
+ ✔ Container compose-homework-app-web-1                                                                                                               Started0.1s 
+ ✔ Container compose-homework-app-redis-1                                                                                                             Started0.1s 
+Filip@filip's macbook pro compose-homework-app % docker compose logs
+web-1    | Hello from PYTHON DOCKER
+web-1    | Hello from PYTHON DOCKER
+redis-1  | Starting Redis Server
+redis-1  | 1:C 19 Mar 2026 13:47:23.665 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1  | 1:C 19 Mar 2026 13:47:23.666 * Redis version=8.6.1, bits=64, commit=00000000, modified=1, pid=1, just started
+redis-1  | 1:C 19 Mar 2026 13:47:23.666 * Configuration loaded
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * monotonic clock: ARM CNTVCT @ 24 ticks/us
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * Running mode=standalone, port=6379.
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> RedisBloom version 8.6.0 (Git=unknown)
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> Registering configuration options: [
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> 	{ bf-error-rate       :      0.01 }
+redis-1  | 1:M 19 Mar 2026 13:47:23.669 # WARNING: Redis does not require authentication and is not protected by network restrictions. Redis will accept connections from any IP address on any network interface.
+...
+
+Filip@filip's macbook pro compose-homework-app % docker compose logs -f
+web-1    | Hello from PYTHON DOCKER
+web-1    | Hello from PYTHON DOCKER
+web-1    | Hello from PYTHON DOCKER
+web-1    | Hello from PYTHON DOCKER
+web-1    | Hello from PYTHON DOCKER
+^C
+Filip@filip's macbook pro compose-homework-app % docker compose logs web
+web-1    | Hello from PYTHON DOCKER
+web-1    | Hello from PYTHON DOCKER
+web-1    | Hello from PYTHON DOCKER
+web-1    | Hello from PYTHON DOCKER
+web-1    | Hello from PYTHON DOCKER
+
+Filip@filip's macbook pro compose-homework-app % docker compose logs redis
+redis-1  | Starting Redis Server
+redis-1  | 1:C 19 Mar 2026 13:47:23.665 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1  | 1:C 19 Mar 2026 13:47:23.666 * Redis version=8.6.1, bits=64, commit=00000000, modified=1, pid=1, just started
+redis-1  | 1:C 19 Mar 2026 13:47:23.666 * Configuration loaded
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * monotonic clock: ARM CNTVCT @ 24 ticks/us
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * Running mode=standalone, port=6379.
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> RedisBloom version 8.6.0 (Git=unknown)
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> Registering configuration options: [
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> 	{ bf-error-rate       :      0.01 }
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> 	{ bf-initial-size     :       100 }
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> 	{ bf-expansion-factor :         2 }
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> 	{ cf-bucket-size      :         2 }
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> 	{ cf-initial-size     :      1024 }
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> 	{ cf-max-iterations   :        20 }
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> 	{ cf-expansion-factor :         1 }
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> 	{ cf-max-expansions   :        32 }
+redis-1  | 1:M 19 Mar 2026 13:47:23.666 * <bf> ]
+redis-1  | 1:M 19 Mar 2026 13:47:23.667 * Module 'bf' loaded from /usr/local/lib/redis/modules//redisbloom.so
+redis-1  | 1:M 19 Mar 2026 13:47:23.668 * <search> Redis version found by RedisSearch : 8.6.1 - oss
+redis-1  | 1:M 19 Mar 2026 13:47:23.668 * <search> RediSearch version 8.6.0 (Git=7782b97)
+redis-1  | 1:M 19 Mar 2026 13:47:23.668 * <search> Low level api version 1 initialized successfully
+redis-1  | 1:M 19 Mar 2026 13:47:23.668 * <search> gc: ON, prefix min length: 2, min word length to stem: 4, prefix max expansions: 200, query timeout (ms): 500, timeout policy: return, oom policy: return, cursor read size: 1000, cursor max idle (ms): 300000, max doctable size: 1000000, max number of search results:  1000000, default scorer: BM25STD, 
+redis-1  | 1:M 19 Mar 2026 13:47:23.668 * <search> Initialized thread pools!
+redis-1  | 1:M 19 Mar 2026 13:47:23.668 * <search> Disabled workers threadpool of size 0
+....
+
+ANSWER TO FINAL QUESTION:
+Aggregated logs are better when we want the big picture across all services. we may want to debug interactions, trace a request flow, see startup order, or just get a monitor of the entire system as a whole.
+Single-service logs are better when we want a concise and focused monitor of only a single service, maybe we are investigating a specific service bug, we want reduced noise, better look at stack traces, etc.

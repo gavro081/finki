@@ -1,0 +1,12 @@
+Filip@filip's macbook pro temp-lab % docker run -e USER_NAME=DockerStudent ubuntu:22.04 env 
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=a4859e8987ce
+USER_NAME=DockerStudent
+HOME=/root
+Filip@filip's macbook pro temp-lab % docker run -e USER_NAME=DockerStudent ubuntu:22.04 env | grep USER_NAME
+USER_NAME=DockerStudent
+Filip@filip's macbook pro temp-lab % docker run -it -e COURSE=CI_CD ubuntu:22.04 /bin/bash
+root@8a310d88ba53:/# env | grep COURSE
+COURSE=CI_CD
+root@8a310d88ba53:/# 
+exit

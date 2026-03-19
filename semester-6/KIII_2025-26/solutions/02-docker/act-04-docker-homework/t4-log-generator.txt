@@ -1,0 +1,51 @@
+Filip@filip's macbook pro Desktop % mkdir docker-logs-homework && cd docker-logs-homework
+Filip@filip's macbook pro docker-logs-homework % touch Dockerfile
+Filip@filip's macbook pro docker-logs-homework % edit Dockerfile 
+Filip@filip's macbook pro docker-logs-homework % docker build -t docker-log-generator:v1 .
+[+] Building 0.1s (5/5) FINISHED                                                                                docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                            0.0s
+ => => transferring dockerfile: 395B                                                                                            0.0s
+ => WARN: JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 2  0.0s
+ => [internal] load metadata for docker.io/library/alpine:latest                                                                0.0s
+ => [internal] load .dockerignore                                                                                               0.0s
+ => => transferring context: 2B                                                                                                 0.0s
+ => CACHED [1/1] FROM docker.io/library/alpine:latest@sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659   0.0s
+ => => resolve docker.io/library/alpine:latest@sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659          0.0s
+ => exporting to image                                                                                                          0.0s
+ => => exporting layers                                                                                                         0.0s
+ => => exporting manifest sha256:87615b08e130dee3cacf2252018fceb90124a62bd3755cdbad59d133f90a389e                               0.0s
+ => => exporting config sha256:381ad51adad631eb5779b1964862de10c7df4fc473e61898b8ec8397118f72d1                                 0.0s
+ => => exporting attestation manifest sha256:91b86db79846b2a78c2fda280daef8038eac3b8e79feec5bc35490d6d9f3b4a7                   0.0s
+ => => exporting manifest list sha256:90bbd417767d1d96f21581e9e0b64f6afe2435372890c9bfa32762231a3efac2                          0.0s
+ => => naming to docker.io/library/docker-log-generator:v1                                                                      0.0s
+ => => unpacking to docker.io/library/docker-log-generator:v1                                                                   0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/z85beqn58oqtiktjprxvu8dye
+
+ 1 warning found (use docker --debug to expand):
+ - JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 2)
+Filip@filip's macbook pro docker-logs-homework % docker run -d docker-log-generator:v1
+9d6bd07ab95199c39896a8e57cbe7a90cb1f6f8b14fa086b028cddec5cc5f16e
+Filip@filip's macbook pro docker-logs-homework % docker logs 9d6bd07ab95199c39896a8e57cbe7a90cb1f6f8b14fa086b028cddec5cc5f16e
+Docker log entry Tue Mar 10 18:04:34 UTC 2026
+Docker log entry Tue Mar 10 18:04:36 UTC 2026
+Docker log entry Tue Mar 10 18:04:38 UTC 2026
+Docker log entry Tue Mar 10 18:04:40 UTC 2026
+Docker log entry Tue Mar 10 18:04:42 UTC 2026
+Docker log entry Tue Mar 10 18:04:44 UTC 2026
+Docker log entry Tue Mar 10 18:04:46 UTC 2026
+Docker log entry Tue Mar 10 18:04:48 UTC 2026
+Filip@filip's macbook pro docker-logs-homework % docker logs 9d6bd07ab95199c39896a8e57cbe7a90cb1f6f8b14fa086b028cddec5cc5f16e
+Docker log entry Tue Mar 10 18:04:34 UTC 2026
+Docker log entry Tue Mar 10 18:04:36 UTC 2026
+Docker log entry Tue Mar 10 18:04:38 UTC 2026
+Docker log entry Tue Mar 10 18:04:40 UTC 2026
+Docker log entry Tue Mar 10 18:04:42 UTC 2026
+Docker log entry Tue Mar 10 18:04:44 UTC 2026
+Docker log entry Tue Mar 10 18:04:46 UTC 2026
+Docker log entry Tue Mar 10 18:04:48 UTC 2026
+Docker log entry Tue Mar 10 18:04:50 UTC 2026
+Docker log entry Tue Mar 10 18:04:52 UTC 2026
+Docker log entry Tue Mar 10 18:04:54 UTC 2026
+Filip@filip's macbook pro docker-logs-homework % docker stop 9d6bd07ab95199c39896a8e57cbe7a90cb1f6f8b14fa086b028cddec5cc5f16e
+9d6bd07ab95199c39896a8e57cbe7a90cb1f6f8b14fa086b028cddec5cc5f16e

@@ -1,0 +1,22 @@
+Filip@filip's macbook pro Desktop % docker pull alpine
+Using default tag: latest
+latest: Pulling from library/alpine
+Digest: sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659
+Status: Downloaded newer image for alpine:latest
+docker.io/library/alpine:latest
+Filip@filip's macbook pro Desktop % docker run alpine echo HelloDocker
+HelloDocker
+Filip@filip's macbook pro Desktop % docker ps -a
+CONTAINER ID   IMAGE          COMMAND              CREATED          STATUS                        PORTS     NAMES
+c9fc77589de9   alpine         "echo HelloDocker"   4 seconds ago    Exited (0) 4 seconds ago                affectionate_ishizaka
+f2ff0207aa22   ubuntu         "/bin/bash"          13 minutes ago   Exited (130) 12 minutes ago             sad_lumiere
+36722822182e   ubuntu         "/bin/bash"          13 minutes ago   Exited (0) 13 minutes ago               pensive_nightingale
+2b7c4922bfde   ubuntu:22.04   "/bin/bash"          27 minutes ago   Exited (130) 26 minutes ago             myubuntu
+def62e1ac1ef   ubuntu:22.04   "/bin/bash"          29 minutes ago   Exited (130) 29 minutes ago             laughing_noyce
+Filip@filip's macbook pro Desktop % docker images
+REPOSITORY         TAG       IMAGE ID       CREATED          SIZE
+docker-lab-nginx   v1        c1a51f754175   22 minutes ago   91.7MB
+nginx              latest    0236ee02dcbc   13 days ago      255MB
+ubuntu             22.04     3ba65aa20f86   4 weeks ago      106MB
+ubuntu             latest    d1e2e92c075e   4 weeks ago      139MB
+alpine             latest    25109184c71b   5 weeks ago      13.6MB

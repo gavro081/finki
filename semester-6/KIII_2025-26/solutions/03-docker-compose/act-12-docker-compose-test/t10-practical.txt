@@ -1,0 +1,39 @@
+Filip@filip's macbook pro compose-homework-app % docker compose version
+Docker Compose version v2.35.1-desktop.1
+Filip@filip's macbook pro compose-homework-app % docker compose up -d
+[+] Running 4/4
+ ✔ Network compose-homework-app_default                                                                                                               Created0.0s 
+ ✔ Container compose-homework-app-redis-1                                               [+] Running 4/4                                               Created0.0s 
+ ✔ Network compose-homework-app_default                                                                                                               Created0.0s 
+ ✔ Container compose-homework-app-redis-1                                                                                                             Started0.1s 
+ ✔ Container compose-homework-app-web-1                                                                                                               Started0.1s 
+ ! web The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested 0.0s 
+Filip@filip's macbook pro compose-homework-app % docker compose ps
+NAME                           IMAGE                 COMMAND                  SERVICE   CREATED         STATUS         PORTS
+compose-homework-app-redis-1   redis                 "docker-entrypoint.s…"   redis     4 seconds ago   Up 4 seconds   6379/tcp
+compose-homework-app-web-1     jamtur01/composeapp   "python app.py"          web       4 seconds ago   Up 4 seconds   0.0.0.0:5001->5000/tcp
+Filip@filip's macbook pro compose-homework-app % docker compose logs 
+redis-1  | Starting Redis Server
+redis-1  | 1:C 19 Mar 2026 14:11:06.169 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1  | 1:C 19 Mar 2026 14:11:06.169 * Redis version=8.6.1, bits=64, commit=00000000, modified=1, pid=1, just started
+redis-1  | 1:C 19 Mar 2026 14:11:06.169 * Configuration loaded
+redis-1  | 1:M 19 Mar 2026 14:11:06.169 * monotonic clock: ARM CNTVCT @ 24 ticks/us
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * Running mode=standalone, port=6379.
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> RedisBloom version 8.6.0 (Git=unknown)
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> Registering configuration options: [
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> 	{ bf-error-rate       :      0.01 }
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> 	{ bf-initial-size     :       100 }
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> 	{ bf-expansion-factor :         2 }
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> 	{ cf-bucket-size      :         2 }
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> 	{ cf-initial-size     :      1024 }
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> 	{ cf-max-iterations   :        20 }
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> 	{ cf-expansion-factor :         1 }
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> 	{ cf-max-expansions   :        32 }
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * <bf> ]
+redis-1  | 1:M 19 Mar 2026 14:11:06.170 * Module 'bf' loaded from /usr/local/lib/redis/modules//redisbloom.so
+...
+Filip@filip's macbook pro compose-homework-app % docker compose down
+[+] Running 1/2
+ ✔ Container compose-homework-app-redis-1  Removed                                 0.2s 
+ ✔ Container compose-homework-app-web-1    Removed                                10.2s 
+ ✔ Network compose-homework-app_default    Removed                                 0.2s

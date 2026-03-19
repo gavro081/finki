@@ -1,0 +1,4 @@
+Filip@filip's macbook pro Desktop % docker compose version
+Docker Compose version v2.35.1-desktop.1
+Filip@filip's macbook pro Desktop % docker-compose --version
+Docker Compose version v2.35.1-desktop.1

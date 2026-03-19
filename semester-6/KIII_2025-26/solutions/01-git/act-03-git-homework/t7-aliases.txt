@@ -1,0 +1,9 @@
+command: git config --global alias.unstage "reset HEAD --"
+command: git config --global alias.last "log -1 --oneline"
+command: git config --list | grep alias
+output:
+alias.unstage=reset HEAD --
+alias.last=log -1 --oneline
+command: git last
+output:
+bf6101d (HEAD -> main, tag: v1.4, origin/main, topic) merged

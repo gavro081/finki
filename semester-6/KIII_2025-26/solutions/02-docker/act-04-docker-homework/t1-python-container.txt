@@ -1,0 +1,36 @@
+Filip@filip's macbook pro Desktop % mkdir docker-python-homework && cd docker-python-homework 
+Filip@filip's macbook pro docker-python-homework % touch app.py
+Filip@filip's macbook pro docker-python-homework % nano app.py 
+Filip@filip's macbook pro docker-python-homework % touch Dockerfile
+Filip@filip's macbook pro docker-python-homework % nano Dockerfile
+Filip@filip's macbook pro docker-python-homework % docker build -t docker-python-app:v1 .                                           
+[+] Building 4.0s (8/8) FINISHED                                                                                docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                            0.0s
+ => => transferring dockerfile: 387B                                                                                            0.0s
+ => [internal] load metadata for docker.io/library/python:3.11-alpine                                                           2.6s
+ => [internal] load .dockerignore                                                                                               0.0s
+ => => transferring context: 2B                                                                                                 0.0s
+ => [1/3] FROM docker.io/library/python:3.11-alpine@sha256:f07e2ace46f560f09a6eeec7b4913b80ee99546e749ef82342a419a326620856     1.3s
+ => => resolve docker.io/library/python:3.11-alpine@sha256:f07e2ace46f560f09a6eeec7b4913b80ee99546e749ef82342a419a326620856     0.0s
+ => => sha256:4c969fdd4dbd97b187154eef482d697577b59871e213506512f268e13873bcba 16.19MB / 16.19MB                                1.0s
+ => => sha256:4bee519da8a2d0fc8a8f8b49a35a7b0f071d69cbe9bc5fad5208257485ee4b14 462.99kB / 462.99kB                              0.8s
+ => => sha256:757da29c40526ea7246ec106ce2f8869f65b106b3eae122852e1c637d4fd7252 250B / 250B                                      0.4s
+ => => extracting sha256:4bee519da8a2d0fc8a8f8b49a35a7b0f071d69cbe9bc5fad5208257485ee4b14                                       0.1s
+ => => extracting sha256:4c969fdd4dbd97b187154eef482d697577b59871e213506512f268e13873bcba                                       0.2s
+ => => extracting sha256:757da29c40526ea7246ec106ce2f8869f65b106b3eae122852e1c637d4fd7252                                       0.0s
+ => [internal] load build context                                                                                               0.0s
+ => => transferring context: 349B                                                                                               0.0s
+ => [2/3] WORKDIR /app                                                                                                          0.0s
+ => [3/3] COPY app.py /app                                                                                                      0.0s
+ => exporting to image                                                                                                          0.0s
+ => => exporting layers                                                                                                         0.0s
+ => => exporting manifest sha256:cbeba77e1c6b62c028d6e2808d4b4583e1831ad41c2402f5d9bba1dffa45b010                               0.0s
+ => => exporting config sha256:3cc332faaec5bc035c7158c8c0fb58f0000a76934f4621e3895670d4200715f6                                 0.0s
+ => => exporting attestation manifest sha256:793717778925316183356e2239cbb8bab8f3e1f8e7a195814ddc101512bfb650                   0.0s
+ => => exporting manifest list sha256:4d9dc4af83ae92c301d3e016d7322998b8326cc19f8767059fc19efaa6300e16                          0.0s
+ => => naming to docker.io/library/docker-python-app:v1                                                                         0.0s
+ => => unpacking to docker.io/library/docker-python-app:v1                                                                      0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/qapt448yjhi3d298c9zo1vwaz
+Filip@filip's macbook pro docker-python-homework % docker run docker-python-app:v1
+Hello from Docker Python container

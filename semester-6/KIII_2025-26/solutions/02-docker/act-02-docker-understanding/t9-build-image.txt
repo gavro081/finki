@@ -1,0 +1,31 @@
+Filip@filip's macbook pro temp-lab % nano Dockerfile
+Filip@filip's macbook pro temp-lab % docker build -t myimage:v1 .
+[+] Building 1.3s (6/6) FINISHED                                                                                docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                            0.0s
+ => => transferring dockerfile: 405B                                                                                            0.0s
+ => [internal] load metadata for docker.io/library/nginx:alpine                                                                 1.2s
+ => [internal] load .dockerignore                                                                                               0.0s
+ => => transferring context: 2B                                                                                                 0.0s
+ => [1/2] FROM docker.io/library/nginx:alpine@sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba           0.0s
+ => => resolve docker.io/library/nginx:alpine@sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba           0.0s
+ => CACHED [2/2] RUN echo "Hello from Docker Lab" > /usr/share/nginx/html/index.html                                            0.0s
+ => exporting to image                                                                                                          0.0s
+ => => exporting layers                                                                                                         0.0s
+ => => exporting manifest sha256:bb62415b177867e6c170448a18498d83b968e9b0dd0a8cca476bf7bf13c72615                               0.0s
+ => => exporting config sha256:e84b6566c55301769610f63774e6653611d6a4398334a3f864b16ab9ac1bf32f                                 0.0s
+ => => exporting attestation manifest sha256:7259d90372200ec73c6126315d3adc607d58287b262a29cee86a7f48cd184a14                   0.0s
+ => => exporting manifest list sha256:20c3ccc94ea2094c895c69f8d36cbe7497fbf37586d36113f03119b5a4cbd9af                          0.0s
+ => => naming to docker.io/library/myimage:v1                                                                                   0.0s
+ => => unpacking to docker.io/library/myimage:v1                                                                                0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/ytwg3pgykb5vlwveesrqnj2bo
+Filip@filip's macbook pro temp-lab % docker images
+REPOSITORY         TAG       IMAGE ID       CREATED          SIZE
+myimage            v1        20c3ccc94ea2   12 minutes ago   91.7MB
+docker-lab-nginx   v1        c1a51f754175   12 minutes ago   91.7MB
+nginx              latest    0236ee02dcbc   13 days ago      255MB
+ubuntu             22.04     3ba65aa20f86   4 weeks ago      106MB
+ubuntu             latest    d1e2e92c075e   4 weeks ago      139MB
+Filip@filip's macbook pro temp-lab % docker rmi 20c3ccc94ea2
+Untagged: myimage:v1
+Deleted: sha256:20c3ccc94ea2094c895c69f8d36cbe7497fbf37586d36113f03119b5a4cbd9af

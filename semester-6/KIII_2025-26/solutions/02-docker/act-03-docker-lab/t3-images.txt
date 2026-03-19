@@ -1,0 +1,24 @@
+Filip@filip's macbook pro Desktop % docker pull nginx:latest
+latest: Pulling from library/nginx
+901e94f777d1: Pull complete 
+c813174c999b: Pull complete 
+f2c05cdfb149: Pull complete 
+2668e3434976: Pull complete 
+e88d7844c33d: Pull complete 
+4a89256e588a: Pull complete 
+Digest: sha256:0236ee02dcbce00b9bd83e0f5fbc51069e7e1161bd59d99885b3ae1734f3392e
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+Filip@filip's macbook pro Desktop % docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+nginx        latest    0236ee02dcbc   13 days ago   255MB
+ubuntu       22.04     3ba65aa20f86   4 weeks ago   106MB
+Filip@filip's macbook pro Desktop % docker run -d -p 8080:80 nginx:latest
+0a18016910d7c05da82a47e0601886ec6f4900358cd8ddd5da27a7c996ec9261
+Filip@filip's macbook pro Desktop % docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                  NAMES
+0a18016910d7   nginx:latest   "/docker-entrypoint.…"   6 seconds ago   Up 6 seconds   0.0.0.0:8080->80/tcp   priceless_wilson
+Filip@filip's macbook pro Desktop % docker stop 0a18016910d7
+0a18016910d7
+Filip@filip's macbook pro Desktop % docker rm 0a18016910d7
+0a18016910d7
