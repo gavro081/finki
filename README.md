@@ -27,3 +27,11 @@ All tracked exercises for my undergrad courses at FCSE.
 - [Intro to Data Science](https://github.com/gavro081/finki/tree/main/semester-5/VNP_2025-26)
 - [Distributed Systems](https://github.com/gavro081/finki/tree/main/semester-5/DS_2025-26)
 - [Software Design and Architecture](https://github.com/gavro081/finki/tree/main/semester-5/DAS_2025-26)
+
+### semester 6
+- [Human–Computer Interaction Design](https://github.com/gavro081/finki/tree/main/semester-6/DNICK_2025-26)
+- [Integrated Systems](https://github.com/gavro081/finki/tree/main/semester-6/IS_2025-26)
+- [Software Quality and Testing](https://github.com/gavro081/finki/tree/main/semester-6/SKIT_2025-26)
+- [Service-Oriented Architectures](https://github.com/gavro081/finki/tree/main/semester-6/SOA_2025-26)
+- [Continuous Integration and Delivery](https://github.com/gavro081/finki/tree/main/semester-6/KIII_2025-26)
+- [Advanced Databases](https://github.com/gavro081/finki/tree/main/semester-6/AdvDB_2025-26)
