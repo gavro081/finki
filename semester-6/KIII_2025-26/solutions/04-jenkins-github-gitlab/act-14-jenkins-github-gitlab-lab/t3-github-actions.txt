@@ -1,0 +1,25 @@
+# .github/workflows/ci.yaml
+name: CI Pipeline
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: List files in repository
+        run: ls -l
+
+3. no secrets were added for this workflow
+4. 
+Workflow Name: CI Pipeline
+Trigger/Event: push to main
+Run status: Success
+Duration: 9.30s
+Jobs: 
+- build -> Success (9.3s)

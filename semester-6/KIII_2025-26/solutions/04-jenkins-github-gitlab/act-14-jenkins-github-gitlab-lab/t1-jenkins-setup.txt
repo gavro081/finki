@@ -1,0 +1,87 @@
+1.
+Filip@filip's macbook pro jenkins-docker % touch docker-compose.yml
+Filip@filip's macbook pro jenkins-docker % nano docker-compose.yml 
+Filip@filip's macbook pro jenkins-docker % cat docker-compose.yml 
+version: "3.8"
+
+services:
+  docker:
+    image: docker:dind
+    container_name: jenkins-docker
+    privileged: true
+    environment:
+      - DOCKER_TLS_CERTDIR=
+    volumes:
+      - jenkins-docker-certs:/certs/client
+      - jenkins-data:/var/jenkins_home
+
+  jenkins-blueocean:
+    image: jenkinsci/blueocean
+    container_name: jenkins-blueocean
+    depends_on:
+      - docker
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    environment:
+      - DOCKER_HOST=tcp://docker:2375
+    volumes:
+      - jenkins-data:/var/jenkins_home
+
+volumes:
+  jenkins-data:
+  jenkins-docker-certs:
+
+Filip@filip's macbook pro jenkins-docker % docker compose up -d
+WARN[0000] /Users/Filip/Desktop/jenkins-docker/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Running 31/31
+ ✔ docker Pulled                                                          44.1s 
+ ✔ jenkins-blueocean Pulled                                               48.7s                                                         
+                                                                                
+[+] Running 5/6
+ ✔ Network jenkins-docker_default                                                                                                                                   Created0.0s ns-docker_jenkins-docker-certs"  Created                   0.0s 
+ ✔ Volume "jenkins-docker_jenkins-data"                                                                                                                             Created0.0s 
+ ✔ Volume "jenkins-docker_jenkins-docker-certs"                                                                                                                     Created0.0s 
+ ⠹ Container jenkins-docker                                                                                                                                     [+] Running 5/6s 
+ ✔ Network jenkins-docker_default                                                                                                                                   Created0.0s 
+ ✔ Volume "jenkins-docker_jenkins-data"                                                                                                                             Created0.0s 
+ ✔ Volume "jenkins-docker_jenkins-docker-certs"                                                                                                                     Created0.0s 
+ ✔ Container jenkins-docker                                                                                                                                     [+] Running 6/6 
+ ✔ Network jenkins-docker_default                                                                                                                                   Created0.0s  
+ ✔ Volume "jenkins-docker_jenkins-data"                                                                                                                             Created0.0s 
+ ✔ Volume "jenkins-docker_jenkins-docker-certs"                                                                                                                     Created0.0s 
+ ✔ Container jenkins-docker                                                                                                                                         Started0.4s 
+ ✔ Container jenkins-blueocean                                                                                                                                      Started0.2s 
+ ! jenkins-blueocean The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested 0.0s 
+Filip@filip's macbook pro jenkins-docker % docker compose ps
+WARN[0000] /Users/Filip/Desktop/jenkins-docker/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+NAME                IMAGE                 COMMAND                  SERVICE             CREATED         STATUS         PORTS
+jenkins-blueocean   jenkinsci/blueocean   "/sbin/tini -- /usr/…"   jenkins-blueocean   9 seconds ago   Up 8 seconds   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp
+jenkins-docker      docker:dind           "dockerd-entrypoint.…"   docker              9 seconds ago   Up 8 seconds   2375-2376/tcp
+
+3.
+Filip@filip's macbook pro jenkins-docker % docker compose ps
+WARN[0000] /Users/Filip/Desktop/jenkins-docker/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+NAME                IMAGE                 COMMAND                  SERVICE             CREATED         STATUS         PORTS
+jenkins-blueocean   jenkinsci/blueocean   "/sbin/tini -- /usr/…"   jenkins-blueocean   9 seconds ago   Up 8 seconds   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp
+jenkins-docker      docker:dind           "dockerd-entrypoint.…"   docker              9 seconds ago   Up 8 seconds   2375-2376/tcp
+Filip@filip's macbook pro jenkins-docker % docker compose logs
+WARN[0000] /Users/Filip/Desktop/jenkins-docker/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+jenkins-docker  | iptables v1.8.11 (nf_tables)
+jenkins-docker  | time="2026-03-23T11:11:12.967166009Z" level=info msg="Starting up"
+....
+
+Jenkins initial setup is required. An admin user has been created and a password generated.
+
+Please use the following password to proceed to installation:
+
+
+f91eba9f58944829856d9820a81ed41c
+
+4. jenkins url is http://localhost:8080/
+5. 
+Filip@filip's macbook pro jenkins-docker % docker compose ps
+WARN[0000] /Users/Filip/Desktop/jenkins-docker/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+NAME                IMAGE                 COMMAND                  SERVICE             CREATED         STATUS         PORTS
+jenkins-blueocean   jenkinsci/blueocean   "/sbin/tini -- /usr/…"   jenkins-blueocean   7 minutes ago   Up 7 minutes   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp
+jenkins-docker      docker:dind           "dockerd-entrypoint.…"   docker              7 minutes ago   Up 7 minutes   2375-2376/tcp

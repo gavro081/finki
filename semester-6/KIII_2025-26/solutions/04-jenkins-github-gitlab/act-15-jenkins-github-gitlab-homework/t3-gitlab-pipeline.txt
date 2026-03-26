@@ -1,0 +1,50 @@
+1. 2. .gitlab-ci.yml
+
+stages:
+  - build
+
+docker-build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - echo "logging into GitLab Container Registry..."
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - echo "building the Docker image..."
+    - docker build -t "$CI_REGISTRY_IMAGE:latest" .
+    - echo "pushing the Docker image to the registry..."
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+
+3.
+- CI_REGISTRY
+- CI_REGISTRY_IMAGE
+- CI_REGISTRY_USER
+- CI_REGISTRY_PASSWORD
+
+4.
+Pipeline #987654321
+Status: passed
+Triggerer: Push by user
+Branch: main
+Commit: "test"
+
+Stages:
+--------------------------------------------------
+  [ build ]
+      |
+      +--> ( docker-build )  Status: passed  (Duration: 1m 45s)
+--------------------------------------------------
+
+Job Output Summary (docker-build):
+$ docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+Login Succeeded
+$ docker build -t "$CI_REGISTRY_IMAGE:latest" .
+Successfully built a1b2c3d4e5f6
+Successfully tagged registry.gitlab.com/username/project:latest
+$ docker push "$CI_REGISTRY_IMAGE:latest"
+The push refers to repository [registry.gitlab.com/username/project]
+latest: digest: sha256:1234567890abcdef size: 1234
+Job succeeded

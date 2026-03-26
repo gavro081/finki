@@ -1,0 +1,15 @@
+stages:
+  - build
+
+build_image:
+  stage: build
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+
+  script:
+    - echo "Building Docker image"
+    - docker build -t my-nginx-app .

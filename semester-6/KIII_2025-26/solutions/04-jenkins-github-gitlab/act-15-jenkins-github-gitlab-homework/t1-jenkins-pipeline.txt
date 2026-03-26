@@ -1,0 +1,104 @@
+Repository:
+https://github.com/gavro081/jenkins-demo.git
+
+Dockerfile:
+FROM nginx
+COPY index.html /usr/share/nginx/html/index.html
+
+Jenkinsfile:
+node {
+    def app
+    stage('Clone repository') {
+        checkout scm
+        echo 'cloned repository.'
+    }
+    stage('Build image') {
+        app = docker.build("gavro081/jenkins-temp", ".")
+        echo 'built image.'
+    }
+    stage('Push image') {
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+            app.push("${env.NAME_OF_BRANCH}-${env.BUILD_NUMBER}")
+            app.push("${env.NAME_OF_BRANCH}-latest")
+        }
+        echo 'pushed image.'
+    }
+    echo "pipeline completed for ${env.NAME_OF_BRANCH}-${env.BUILD_NUMBER}."
+}
+
+2) 
+
+GitHub credentials in Jenkins:
+- Type: Username with password (or Personal Access Token)
+- Username: gavro081
+- ID: github
+- Usage in pipeline output: "using credential github"
+
+Docker Hub credentials in Jenkins:
+- Type: Username with password
+- Username: gavro081
+- ID: dockerhub
+- Usage in Jenkinsfile: docker.withRegistry(..., 'dockerhub')
+
+3) 
+
+Jenkins->Open Blue Ocean->New Pipeline
+-> Connect to GitHub account (credential: github)
+-> Select repository: gavro081/jenkins-demo
+-> Create Pipeline.
+
+Blue Ocean pipeline result:
+- Pipeline name created from repository: jenkins-demo
+- Branch detected: main
+- Jenkinsfile detected in repository root
+- Run triggered and visualized in Blue Ocean with 3 stages:
+  1. Clone repository
+  2. Build image
+  3. Push image
+
+4) 
+GitHub repository->Settings->Webhooks->Add webhook:
+- Payload URL: https://theopolitical-astronomically-lowd.ngrok-free.dev/github-webhook/
+- Content type: application/json
+- Events: Just the push event
+- Status: Active
+
+5) 
+
+```bash
+git add .
+git commit -m "example commit"
+git push origin main
+```
+
+output from blue ocean:
+The recommended git tool is: NONE
+using credential github
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/jenkins-demo-2_main/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/gavro081/jenkins-demo.git # timeout=10
+Cleaning workspace
+
+cloned repository.
+
++ docker build -t gavro081/jenkins-temp .
+#0 building with "default" instance using docker driver
+# build steps .. exporting to image
+built image.
+
++ docker push registry.hub.docker.com/gavro081/jenkins-temp:main-<BUILD_NUMBER>
+The push refers to repository [registry.hub.docker.com/gavro081/jenkins-temp]
+29f18312273a: Pushed
+main-<BUILD_NUMBER>: digest: sha256:<DIGEST> size: <SIZE>
+
++ docker push registry.hub.docker.com/gavro081/jenkins-temp:main-latest
+main-latest: digest: sha256:<DIGEST> size: <SIZE>
+pushed image.
+
+pipeline completed for main-<BUILD_NUMBER>.
+Finished: SUCCESS
+
+Blue Ocean stage status:
+- Clone repository: SUCCESS
+- Build image: SUCCESS 
+- Push image: SUCCESS

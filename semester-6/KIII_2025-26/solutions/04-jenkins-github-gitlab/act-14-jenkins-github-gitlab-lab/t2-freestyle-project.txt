@@ -1,0 +1,36 @@
+Github url:
+https://github.com/gavro081/KIII-Lab
+
+Freestyle project name:
+KIII-Lab-01
+
+Build steps:
+Execute shell:
+ls -l 
+
+Build periodically:
+Schedule:
+* * * * * 
+
+Build output:
+#3 (Mar 26, 2026, 09:12:59 PM)
+Started 18 sec ago
+Took 57 ms
+Started by timer
+
+This run spent:
+
+89 ms waiting;
+57 ms build duration;
+0.12 sec total from scheduled to completion.
+No changes.
+
+Guthub credentials:
+Update credential
+Username
+Gavro081
+Password
+Concealed
+ID
+github
+GitHub Access Token
