@@ -36,9 +36,13 @@ public class Repository<T> : IRepository<T> where T : class
             query = include(query);
         if (asNoTracking)
             query = query.AsNoTracking();
-        if (orderBy != null)
-            return orderBy(query).Select(selector).FirstOrDefaultAsync();
-        return query.Select(selector).FirstOrDefaultAsync();
+
+        var finalQuery = orderBy != null ? (IQueryable<T>)orderBy(query) : query;
+
+        if (typeof(E) == typeof(T))
+            return (Task<E?>)(object)finalQuery.FirstOrDefaultAsync();
+
+        return finalQuery.Select(selector).FirstOrDefaultAsync();
     }
 
     public Task<List<E>> GetAllAsync<E>(Expression<Func<T, E>> selector,
@@ -144,6 +148,7 @@ public class Repository<T> : IRepository<T> where T : class
     {
         _context.Add(entity);
         await _context.SaveChangesAsync();
+        _context.Entry(entity).State = EntityState.Detached;
         return entity;
     }
 

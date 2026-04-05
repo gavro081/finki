@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/Filip/Downloads/ConsultationsApplicationStarter/Service/Service.csproj": {}
+    "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Service/Service.csproj": {}
   },
   "projects": {
-    "/Users/Filip/Downloads/ConsultationsApplicationStarter/Domain/Domain.csproj": {
+    "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Domain/Domain.csproj",
+        "projectUniqueName": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Domain/Domain.csproj",
+        "projectPath": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Domain/Domain.csproj",
         "packagesPath": "/Users/Filip/.nuget/packages/",
-        "outputPath": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Domain/obj/",
+        "outputPath": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/Filip/.nuget/NuGet/NuGet.Config"
@@ -79,14 +79,14 @@
         }
       }
     },
-    "/Users/Filip/Downloads/ConsultationsApplicationStarter/Repository/Repository.csproj": {
+    "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Repository/Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Repository/Repository.csproj",
+        "projectUniqueName": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Repository/Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Repository/Repository.csproj",
+        "projectPath": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Repository/Repository.csproj",
         "packagesPath": "/Users/Filip/.nuget/packages/",
-        "outputPath": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Repository/obj/",
+        "outputPath": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Repository/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/Filip/.nuget/NuGet/NuGet.Config"
@@ -101,8 +101,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Users/Filip/Downloads/ConsultationsApplicationStarter/Domain/Domain.csproj": {
-                "projectPath": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Domain/Domain.csproj"
+              "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Domain/Domain.csproj": {
+                "projectPath": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Domain/Domain.csproj"
               }
             }
           }
@@ -158,14 +158,14 @@
         }
       }
     },
-    "/Users/Filip/Downloads/ConsultationsApplicationStarter/Service/Service.csproj": {
+    "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Service/Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Service/Service.csproj",
+        "projectUniqueName": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Service/Service.csproj",
         "projectName": "Service",
-        "projectPath": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Service/Service.csproj",
+        "projectPath": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Service/Service.csproj",
         "packagesPath": "/Users/Filip/.nuget/packages/",
-        "outputPath": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Service/obj/",
+        "outputPath": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Service/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/Filip/.nuget/NuGet/NuGet.Config"
@@ -180,11 +180,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Users/Filip/Downloads/ConsultationsApplicationStarter/Domain/Domain.csproj": {
-                "projectPath": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Domain/Domain.csproj"
+              "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Domain/Domain.csproj": {
+                "projectPath": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Domain/Domain.csproj"
               },
-              "/Users/Filip/Downloads/ConsultationsApplicationStarter/Repository/Repository.csproj": {
-                "projectPath": "/Users/Filip/Downloads/ConsultationsApplicationStarter/Repository/Repository.csproj"
+              "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Repository/Repository.csproj": {
+                "projectPath": "/Users/Filip/Desktop/faks/finki/semester-6/IS_2025-26/k1/ConsultationsApplicationStarter/Repository/Repository.csproj"
               }
             }
           }

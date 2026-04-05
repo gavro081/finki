@@ -9,6 +9,7 @@ using Repository.Interface;
 using Service.Implementation;
 using Service.Interface;
 using Web.DbSeeder;
+using Web.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IConsultationService, ConsultationService>();
+builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+builder.Services.AddScoped<IFileUploadService, FileUploadService>();
+builder.Services.AddScoped<ConsultationMapper>();
+builder.Services.AddScoped<AttendanceMapper>();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -99,3 +107,5 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 app.Run();
+
+public partial class Program { }

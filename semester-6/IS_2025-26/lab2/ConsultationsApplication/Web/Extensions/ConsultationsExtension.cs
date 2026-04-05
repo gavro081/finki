@@ -14,7 +14,7 @@ public static class ConsultationMappingExtensions
             StartTime: cons.StartTime,
             EndTime: cons.EndTime,
             RoomId: cons.RoomId,
-            RoomName: cons.Room?.Name // mora za da ne padne,
+            RoomName: cons.Room?.Name // mora za da ne padne
         );
     }
     
