@@ -5,19 +5,18 @@ namespace Web.Extensions;
 
 public static class AttendanceMappingExtensions
 {
-    public static AttendanceResponse? ToResponse(this Attendance c)
+    public static AttendanceResponse ToResponse(this Attendance attendance)
     {
         return new AttendanceResponse(
-            c.Id,
-            c.UserId,
-            c.User.FirstName + " " + c.User.LastName,
-            c.Status.ToString()
+            Id: attendance.Id,
+            UserId: attendance.UserId,
+            UserName: attendance.User == null ? "no user" : attendance.User.FirstName + " " + attendance.User.LastName,
+            Status: attendance.Status.ToString()
         );
     }
-    // List<Attendance> -> List<AttendanceResponse>   
-    public static List<AttendanceResponse> ToResponse(this List<Attendance> atts)
+
+    public static List<AttendanceResponse> ToResponse(this List<Attendance> attendances)
     {
-        // return consultations.Select(x => x.ToResponse()).ToList();
-        return atts.Select(x => x.ToResponse()).ToList();
+        return attendances.Select(x => x.ToResponse()).ToList();
     }
 }

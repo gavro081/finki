@@ -7,37 +7,40 @@ namespace Web.Extensions;
 
 public static class ConsultationMappingExtensions 
 {
-    public static ConsultationResponse? ToResponse(this Consultation c)
+    public static ConsultationResponse ToResponse(this Consultation cons)
     {
         return new ConsultationResponse(
-            c.Id,
-            c.StartTime,
-            c.EndTime,
-            c.RoomId,
-            c.Room?.Name
-        );
-    }
-
-    public static ConsultationWithAttendancesResponse? ToResponseWithAttendances(this Consultation c)
-    {
-        var res = c.Attendances.ToList().ToResponse();
-
-        return new ConsultationWithAttendancesResponse(
-            c.Id, c.StartTime, c.EndTime, c.RoomId, c.Room?.Name, res
+            Id: cons.Id,
+            StartTime: cons.StartTime,
+            EndTime: cons.EndTime,
+            RoomId: cons.RoomId,
+            RoomName: cons.Room?.Name // mora za da ne padne,
         );
     }
     
-    public static List<ConsultationResponse> ToResponse(this List<Consultation> consultations)
+    public static ConsultationWithAttendancesResponse ToResponseWithAttendance(this Consultation cons)
     {
-        return consultations.Select(x => x.ToResponse()).ToList();
+        return new ConsultationWithAttendancesResponse(
+            Id: cons.Id,
+            StartTime: cons.StartTime,
+            EndTime: cons.EndTime,
+            RoomId: cons.RoomId,
+            RoomName: cons.Room?.Name,
+            AttendanceResponses: cons.Attendances?.ToList()?.ToResponse() ?? new List<AttendanceResponse>()
+        );
+    }
+    
+    public static List<ConsultationResponse> ToResponse(this List<Consultation> cons)
+    {
+        return cons.Select(x => x.ToResponse()).ToList();
     }
 
-    public static ConsultationDto toDto(this ConsultationRequest request)
+    public static ConsultationDto ToDto(this ConsultationRequest request)
     {
         return new ConsultationDto
         {
-            StartTime = request.StartTime,
             EndTime = request.EndTime,
+            StartTime = request.StartTime,
             RoomId = request.RoomId
         };
     }

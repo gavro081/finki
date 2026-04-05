@@ -10,22 +10,26 @@ public class ConsultationService(IRepository<Consultation> repository) : IConsul
 {
     public async Task<Consultation> GetByIdNotNullAsync(Guid id)
     {
-        var result = await repository.GetAsync(
+        var response = await repository.GetAsync(
             selector: x => x,
-            predicate: x => x.Id == id);
+            predicate: x => x.Id == id
+        );
 
-        return result ?? throw new InvalidOperationException($"Consultation with id {id}");
+        if (response == null)
+        {
+            throw new InvalidOperationException($"Consultation with Id {id} not found");
+        }
+
+        return response;
     }
 
     public async Task<List<Consultation>> GetAllAsync(string? roomName)
     {
-        var result = await repository.GetAllAsync(
+        return await repository.GetAllAsync(
             selector: x => x,
-            include: x => x.Include(y => y.Room),
-            predicate: roomName == null ? null : x => x.Room.Name == roomName
+            include: x => x.Include(y => y.Room), // todo: dali treba vaka?
+            predicate: x => roomName == null || x.Room.Name.Contains(roomName)
         );
-        
-        return result.ToList();
     }
 
     public async Task<Consultation> CreateAsync(ConsultationDto dto)
@@ -36,16 +40,15 @@ public class ConsultationService(IRepository<Consultation> repository) : IConsul
             EndTime = dto.EndTime,
             RoomId = dto.RoomId,
         };
-
         return await repository.InsertAsync(consultation);
     }
 
     public async Task<Consultation> UpdateAsync(Guid id, ConsultationDto dto)
     {
         var consultation = await GetByIdNotNullAsync(id);
-        consultation.RoomId = dto.RoomId;
         consultation.StartTime = dto.StartTime;
         consultation.EndTime = dto.EndTime;
+        consultation.RoomId = dto.RoomId;
         return await repository.UpdateAsync(consultation);
     }
 
@@ -57,12 +60,19 @@ public class ConsultationService(IRepository<Consultation> repository) : IConsul
 
     public async Task<PaginatedResult<Consultation>> GetPagedAsync(int pageNumber, int pageSize)
     {
-        return await repository.GetAllPagedAsync(
+        
+        // TODO
+        var r =  await repository.GetAllPagedAsync(
             selector: x => x,
             pageNumber: pageNumber,
             pageSize: pageSize,
-            include: x => x.Include(y => y.Attendances),
-            orderBy: x => x.OrderBy(e => e.StartTime),
-            asNoTracking: true);
+            include: x => x
+                .Include(c => c.Room)
+                .Include(c => c.Attendances)
+                .ThenInclude(a => a.User),
+            orderBy: x => x.OrderBy(y => y.StartTime),
+            asNoTracking: true // todo: sto pravi ova??
+        );
+        return r;
     }
 }
