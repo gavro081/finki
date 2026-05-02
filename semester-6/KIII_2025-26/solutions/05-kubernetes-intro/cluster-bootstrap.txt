@@ -1,0 +1,36 @@
+Filip@filip's macbook pro Desktop % k3d cluster create mycluster
+INFO[0001] Prep: Network                                
+INFO[0001] Created network 'k3d-mycluster'              
+INFO[0001] Created image volume k3d-mycluster-images    
+INFO[0001] Starting new tools node...                   
+INFO[0002] Creating node 'k3d-mycluster-server-0'       
+INFO[0002] Pulling image 'ghcr.io/k3d-io/k3d-tools:5.8.3' 
+INFO[0004] Pulling image 'docker.io/rancher/k3s:v1.31.5-k3s1' 
+INFO[0004] Starting node 'k3d-mycluster-tools'          
+INFO[0009] Creating LoadBalancer 'k3d-mycluster-serverlb' 
+INFO[0010] Pulling image 'ghcr.io/k3d-io/k3d-proxy:5.8.3' 
+INFO[0012] Using the k3d-tools node to gather environment information 
+INFO[0012] Starting new tools node...                   
+INFO[0012] Starting node 'k3d-mycluster-tools'          
+INFO[0014] Starting cluster 'mycluster'                 
+INFO[0014] Starting servers...                          
+INFO[0014] Starting node 'k3d-mycluster-server-0'       
+INFO[0016] All agents already running.                  
+INFO[0016] Starting helpers...                          
+INFO[0016] Starting node 'k3d-mycluster-serverlb'       
+INFO[0022] Injecting records for hostAliases (incl. host.k3d.internal) and for 3 network members into CoreDNS configmap... 
+INFO[0024] Cluster 'mycluster' created successfully!    
+INFO[0024] You can now use it like this:                
+kubectl cluster-info
+Filip@filip's macbook pro Desktop % kubectl get nodes
+NAME                     STATUS   ROLES                  AGE   VERSION
+k3d-mycluster-server-0   Ready    control-plane,master   49s   v1.31.5+k3s1
+Filip@filip's macbook pro Desktop % kubectl get pods --all-namespaces
+NAMESPACE     NAME                                      READY   STATUS      RESTARTS   AGE
+kube-system   coredns-ccb96694c-fjzdf                   1/1     Running     0          50s
+kube-system   helm-install-traefik-crd-tc44v            0/1     Completed   0          50s
+kube-system   helm-install-traefik-mwbgg                0/1     Completed   1          50s
+kube-system   local-path-provisioner-5cf85fd84d-tv262   1/1     Running     0          50s
+kube-system   metrics-server-5985cbc9d7-b9rzh           1/1     Running     0          50s
+kube-system   svclb-traefik-079d35f5-zckcs              2/2     Running     0          39s
+kube-system   traefik-5d45fc8cc9-nzt6z                  1/1     Running     0          39s
