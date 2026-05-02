@@ -1,0 +1,85 @@
+Filip@filip's macbook pro Desktop % open -a CotEditor pod.yml 
+Filip@filip's macbook pro Desktop % cat pod.yml 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels:
+    zone: prod
+    version: v1
+spec:
+  containers:
+  - name: hello-ctr
+    image: nigelpoulton/k8sbook:1.0
+    ports:
+    - containerPort: 8080
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "256Mi"
+
+Filip@filip's macbook pro Desktop % kubectl apply -f pod.yml
+pod/hello-pod created
+Filip@filip's macbook pro Desktop % kubectl describe pod hello-pod
+Name:             hello-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             k3d-mycluster-server-0/172.20.0.3
+Start Time:       Sat, 02 May 2026 22:37:56 +0200
+Labels:           version=v1
+                  zone=prod
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.7
+IPs:
+  IP:  10.42.0.7
+Containers:
+  hello-ctr:
+    Container ID:   containerd://290f0024f4cbc5a10d4939482931c7c2f791ecfe8337dab76b4f5f60df4e59ef
+    Image:          nigelpoulton/k8sbook:1.0
+    Image ID:       docker.io/nigelpoulton/k8sbook@sha256:2209995b11148d3bdf962a9364946cec57d088f831521e0a023085a741a6a1e2
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sat, 02 May 2026 22:38:02 +0200
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  256Mi
+    Requests:
+      cpu:        250m
+      memory:     128Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-zczjs (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-zczjs:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  15s   default-scheduler  Successfully assigned default/hello-pod to k3d-mycluster-server-0
+  Normal  Pulling    15s   kubelet            Pulling image "nigelpoulton/k8sbook:1.0"
+  Normal  Pulled     10s   kubelet            Successfully pulled image "nigelpoulton/k8sbook:1.0" in 4.89s (4.89s including waiting). Image size: 62713739 bytes.
+  Normal  Created    10s   kubelet            Created container hello-ctr
+  Normal  Started    10s   kubelet            Started container hello-ctr

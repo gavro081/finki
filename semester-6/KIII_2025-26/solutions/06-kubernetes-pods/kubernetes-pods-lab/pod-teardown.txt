@@ -1,0 +1,19 @@
+Filip@filip's macbook pro Desktop % kubectl get pods        
+NAME        READY   STATUS    RESTARTS   AGE
+hello-pod   1/1     Running   0          14m
+initpod     1/1     Running   0          2m50s
+Filip@filip's macbook pro Desktop % kubectl delete pod hello-pod
+pod "hello-pod" deleted
+^C%                                                                                                                                                                                                                  Filip@filip's macbook pro Desktop % kubectl delete pod initpod  
+pod "initpod" deleted
+^C%                                                                                                                                                                                                                  Filip@filip's macbook pro Desktop % kubectl get pods            
+NAME        READY   STATUS        RESTARTS   AGE
+hello-pod   1/1     Terminating   0          14m
+initpod     1/1     Terminating   0          3m12s
+Filip@filip's macbook pro Desktop % k3d cluster delete mycluster
+INFO[0000] Deleting cluster 'mycluster'                 
+INFO[0000] Deleting cluster network 'k3d-mycluster'     
+INFO[0001] Deleting 1 attached volumes...               
+INFO[0001] Removing cluster details from default kubeconfig... 
+INFO[0001] Removing standalone kubeconfig file (if there is one)... 
+INFO[0001] Successfully deleted cluster mycluster!   

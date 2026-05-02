@@ -1,0 +1,71 @@
+Filip@filip's macbook pro Desktop % k3d cluster list
+
+NAME        SERVERS   AGENTS   LOADBALANCER
+mycluster   1/1       0/0      true
+Filip@filip's macbook pro Desktop % kubectl apply -f pod.yml
+pod/hello-pod created
+Filip@filip's macbook pro Desktop % kubectl get pods -o wide
+
+NAME        READY   STATUS    RESTARTS   AGE   IP          NODE                     NOMINATED NODE   READINESS GATES
+hello-pod   1/1     Running   0          10s   10.42.0.9   k3d-mycluster-server-0   <none>           <none>
+Filip@filip's macbook pro Desktop % kubectl describe pod hello-pod
+
+Name:             hello-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             k3d-mycluster-server-0/172.20.0.3
+Start Time:       Sat, 02 May 2026 21:37:21 +0200
+Labels:           version=v1
+                  zone=prod
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.9
+IPs:
+  IP:  10.42.0.9
+Containers:
+  hello-ctr:
+    Container ID:   containerd://dd5128cb341cee25e01fa6ea964e9ca194c09d778a7e36773c996528deae7f24
+    Image:          nigelpoulton/k8sbook:1.0
+    Image ID:       docker.io/nigelpoulton/k8sbook@sha256:2209995b11148d3bdf962a9364946cec57d088f831521e0a023085a741a6a1e2
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sat, 02 May 2026 21:37:26 +0200
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  256Mi
+    Requests:
+      cpu:        500m
+      memory:     256Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-zkzjz (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-zkzjz:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  13s   default-scheduler  Successfully assigned default/hello-pod to k3d-mycluster-server-0
+  Normal  Pulling    13s   kubelet            Pulling image "nigelpoulton/k8sbook:1.0"
+  Normal  Pulled     8s    kubelet            Successfully pulled image "nigelpoulton/k8sbook:1.0" in 5.3s (5.301s including waiting). Image size: 62713739 bytes.
+  Normal  Created    8s    kubelet            Created container hello-ctr
+  Normal  Started    8s    kubelet            Started container hello-ctr

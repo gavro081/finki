@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: restart-pod
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: failing-ctr
+    image: alpine
+    command: ["sh", "-c", "exit 1"]

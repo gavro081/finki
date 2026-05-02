@@ -1,0 +1,59 @@
+Filip@filip's macbook pro Desktop % kubectl apply -f sidecar-local.yml
+pod/git-sync created
+service/svc-sidecar created
+Filip@filip's macbook pro Desktop % 
+Filip@filip's macbook pro Desktop % kubectl get pods -o wide --watch  
+NAME        READY   STATUS    RESTARTS   AGE   IP           NODE                     NOMINATED NODE   READINESS GATES
+git-sync    2/2     Running   0          30s   10.42.0.11   k3d-mycluster-server-0   <none>           <none>
+hello-pod   1/1     Running   0          12m   10.42.0.7    k3d-mycluster-server-0   <none>           <none>
+^C%                                                                                                                                                                                                                  Filip@filip's macbook pro Desktop % kubectl exec -it git-sync -c ctr-web -- sh
+# kubectl exec -it git-sync -c ctr-web -- sh
+# ls
+bin  boot  dev	docker-entrypoint.d  docker-entrypoint.sh  etc	home  lib  media  mnt  opt  proc  root	run  sbin  srv	sys  tmp  usr  var
+# cd usr/share/nginx
+# ls
+html  rev-046255c22035e338bc3feff19f349067fc5e957a
+# cat html/index.html
+<!DOCTYPE html>
+<html>
+<head>
+<title>NGINX</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>This is version 1.0</h1>
+</body>
+</html>
+# exit
+command terminated with exit code 127
+Filip@filip's macbook pro Desktop % kubectl get pods -o wide
+NAME        READY   STATUS    RESTARTS   AGE     IP           NODE                     NOMINATED NODE   READINESS GATES
+git-sync    2/2     Running   0          3m19s   10.42.0.11   k3d-mycluster-server-0   <none>           <none>
+hello-pod   1/1     Running   0          15m     10.42.0.7    k3d-mycluster-server-0   <none>           <none>
+Filip@filip's macbook pro Desktop % kubectl describe pod git-sync
+Name:             git-sync
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             k3d-mycluster-server-0/172.20.0.3
+Start Time:       Sat, 02 May 2026 22:50:22 +0200
+Labels:           app=sidecar
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.11
+IPs:
+  IP:  10.42.0.11
+Containers:
+  ctr-web:
+... rest of description
+
+explanation of what each container does:
+the git-sync container periodically pulls content from a remote git repository and writes it into a shared emptyDir volume mounted at /html.
+the ctr-web container is a web server that serves files from that same /html volume. neither container depends on the other's image or internal logic, they are decoupled and communicate only through the shared volume.
+the shared volume is the key to this sidecar pattern because it allows two containers with completely different responsibilities to collaborate without any direct coupling, the sidecar enriches or supplies data that the main container consumes, which is the core idea behind the pattern.

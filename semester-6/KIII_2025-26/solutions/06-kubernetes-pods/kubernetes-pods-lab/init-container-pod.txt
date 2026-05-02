@@ -1,0 +1,15 @@
+Filip@filip's macbook pro Desktop % kubectl apply -f initpod.yml       
+kubectl get pods --watchpod/initpod created
+Filip@filip's macbook pro Desktop % kubectl get pods --watch
+NAME        READY   STATUS     RESTARTS   AGE
+hello-pod   1/1     Running    0          11m
+initpod     0/1     Init:0/1   0          1s
+initpod     0/1     Init:0/1   0          4s
+^C%                                                                                                                                                                                                                  Filip@filip's macbook pro Desktop % kubectl apply -f initsvc.yml 
+service/k8sbook created
+Filip@filip's macbook pro Desktop % kubectl get pods --watch
+NAME        READY   STATUS     RESTARTS   AGE
+hello-pod   1/1     Running    0          12m
+initpod     0/1     Init:0/1   0          91s
+initpod     0/1     PodInitializing   0          92s
+initpod     1/1     Running           0          100s

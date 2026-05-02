@@ -1,0 +1,32 @@
+Filip@filip's macbook pro Desktop % kubectl get nodes
+
+NAME                     STATUS   ROLES                  AGE   VERSION
+k3d-mycluster-server-0   Ready    control-plane,master   21m   v1.31.5+k3s1
+Filip@filip's macbook pro Desktop % kubectl label node k3d-mycluster-server-0 disk=ssd
+node/k3d-mycluster-server-0 labeled
+Filip@filip's macbook pro Desktop % nano node-selector.yml
+Filip@filip's macbook pro Desktop % cat node-selector.yml 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-selector-pod
+spec:
+  nodeSelector:
+    disk: ssd
+  containers:
+  - name: node-selector-ctr
+    image: nginx
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "64Mi"
+      limits:
+        cpu: "200m"
+        memory: "128Mi"
+Filip@filip's macbook pro Desktop % kubectl apply -f node-selector.yml
+pod/node-selector-pod created
+Filip@filip's macbook pro Desktop % kubectl get pod -o wide
+NAME                READY   STATUS    RESTARTS   AGE   IP           NODE                     NOMINATED NODE   READINESS GATES
+git-sync            2/2     Running   0          10m   10.42.0.11   k3d-mycluster-server-0   <none>           <none>
+hello-pod           1/1     Running   0          22m   10.42.0.7    k3d-mycluster-server-0   <none>           <none>
+node-selector-pod   1/1     Running   0          14s   10.42.0.12   k3d-mycluster-server-0   <none>           <none>
