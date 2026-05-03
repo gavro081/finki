@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>book detail</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.5-dist/css/bootstrap.css' %}">
+    <script src="{% static 'bootstrap-5.3.5-dist/js/bootstrap.bundle.js' %}"></script>
+</head>
+<body style="background-color: #e3e3db">
+<nav style="background-color: #000057;"
+     class="nav p-4 align-content-center justify-content-center">
+    <a href="{% url 'index' %}">
+        <img src="{% static 'main.png' %}" alt="main image">
+    </a>
+</nav>
+<div style="background-color: #6ea8d9"
+     class="p-2">
+    <h1 class="mb-0 text-lg-center">{{ book.title }}</h1>
+</div>
+
+<div>
+    <div class="row justify-content-center align-items-start mt-4">
+        <div class="col-md-4 bg-white p-4">
+            <img src="{{ book.image.url }}" alt="book image"
+            class="card-img-top"
+            style="height: 440px; object-fit: fill">
+        </div>
+        <div class="col-md-4 text-center">
+            <p>Издавачка куќа: {{ book.publisher.title }}</p>
+            <p>Категорија: {{ book.get_category_type_display }}</p>
+            <p>ИСБН: {{ book.isbn }}</p>
+            <p>Година на издавање: {{ book.release_year }}</p>
+            <p>Број на страни: {{ book.num_pages }}</p>
+            <p>Димензии: {{ book.book_dimesions }}</p>
+            <p>Корица: {{ book.get_cover_type_display }}</p>
+            <p>Цена: {{ book.price }} ден.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
