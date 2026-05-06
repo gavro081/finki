@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.5-dist/css/bootstrap.css' %}">
+    <script src="{% static 'bootstrap-5.3.5-dist/js/bootstrap.bundle.js' %}"></script>
+</head>
+<body style="background-color: #e3e3db">
+
+<div class="container-fluid p-3 d-flex align-center" style="background-color: #0d0d2a;">
+    <div class="col-4 text-center">
+        <h3 class="text-white">FILM<span class="text-danger">OTEKA</span></h3>
+    </div>
+    <div class="col-6 text-end">
+        <p class="text-capitalize" style="color: lightgray" >YOUR PERSONAL FILM ARCHIVE</p>
+    </div>
+</div>
+<div class="container-fluid bg-danger" style="padding: 1px"></div>
+<div class="container-fluid p-3" style="background-color: #0d0d2a">
+    <div class="col-4 text-center">
+        <h3 class="text-white">ALL <span class="text-danger">FILMS</span></h3>
+        <p style="color: lightgray; margin-left: 10px">{{ length }} titles in this archive</p>
+    </div>
+</div>
+
+<div class="container px-5 mt-4">
+    <div class="row">
+        {% for movie in movies %}
+        <div class="col-4">
+            <div class="card shadow-sm text-center p-3 mb-4">
+                <a href="{% url 'movie_detail' movie.id %}">
+                <img src="{{ movie.image.url }}"
+                     class="card-img-top"
+                     style="height: 300px; object-fit: fill;"
+                     alt="{{ movie.title }}">
+                </a>
+                <div class="card-body">
+                    <h6 class="fw-bold">{{ movie.title }}</h6>
+                    <p class="text-muted">Цена: {{ movie.cost }} den.</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
