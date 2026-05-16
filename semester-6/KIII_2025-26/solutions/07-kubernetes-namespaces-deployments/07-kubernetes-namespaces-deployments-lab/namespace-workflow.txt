@@ -1,0 +1,20 @@
+Filip@filip's macbook pro dev % kubectl create namespace shield
+namespace/shield created
+Filip@filip's macbook pro dev % nano namespace.yaml
+Filip@filip's macbook pro dev % cat namespace.yaml 
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: shield
+Filip@filip's macbook pro dev % kubectl apply -f namespace.yaml
+Warning: resource namespaces/shield is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+namespace/shield configured
+Filip@filip's macbook pro dev % kubectl get ns
+NAME              STATUS   AGE
+default           Active   13d
+kube-node-lease   Active   13d
+kube-public       Active   13d
+kube-system       Active   13d
+shield            Active   38s
+Filip@filip's macbook pro dev % kubectl config set-context --current --namespace=shield
+Context "k3d-mycluster" modified.

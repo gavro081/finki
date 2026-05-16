@@ -1,0 +1,52 @@
+Filip@filip's macbook pro dev % nano deployment.yaml 
+Filip@filip's macbook pro dev % cat deployment.yaml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+  labels:
+    app: hello-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: hello-deploy
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: hello-deploy
+    spec:
+      containers:
+        - name: hello-deploy
+          image: gavro081/my-site:2.0
+          ports:
+            - containerPort: 80
+Filip@filip's macbook pro dev % kubectl apply -f deployment.yaml -n shield
+
+deployment.apps/hello-deploy configured
+Filip@filip's macbook pro dev % kubectl rollout history deployment/hello-deploy -n shield
+deployment.apps/hello-deploy 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+
+Filip@filip's macbook pro dev % kubectl rollout status history deployment/hello-deploy -n shield
+error: there is no need to specify a resource type as a separate argument when passing arguments in resource/name form (e.g. 'kubectl get resource/<resource_name>' instead of 'kubectl get resource resource/<resource_name>'
+Filip@filip's macbook pro dev % kubectl rollout status deployment/hello-deploy -n shield
+
+Waiting for deployment "hello-deploy" rollout to finish: 3 out of 5 new replicas have been updated...
+^C%                                                                                                      
+Filip@filip's macbook pro dev % kubectl rollout status deployment/hello-deploy -n shield
+
+Waiting for deployment "hello-deploy" rollout to finish: 3 out of 5 new replicas have been updated...
+Waiting for deployment "hello-deploy" rollout to finish: 4 out of 5 new replicas have been updated...
+Waiting for deployment "hello-deploy" rollout to finish: 5 out of 5 new replicas have been updated...
+
+Waiting for deployment "hello-deploy" rollout to finish: 1 old replicas are pending termination...
+deployment "hello-deploy" successfully rolled out
+

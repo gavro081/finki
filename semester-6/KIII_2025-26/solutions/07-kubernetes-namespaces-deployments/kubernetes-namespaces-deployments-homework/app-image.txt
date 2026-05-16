@@ -1,0 +1,53 @@
+Filip@filip's macbook pro dev % nano index.html
+Filip@filip's macbook pro dev % cat index.html 
+<!DOCTYPE html>
+<html>
+<head><title>My Page</title></head>
+<body>
+  <h1>Filip Gavrilovski</h1>
+  <p>Software Engineering Intern</p>
+</body>
+</html>
+Filip@filip's macbook pro dev % nano Dockerfile
+Filip@filip's macbook pro dev % cat Dockerfile 
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
+Filip@filip's macbook pro dev % docker build -t your-dockerhub-username/my-site:1.0 .
+[+] Building 2.4s (2/2) FINISHED                                                    docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                0.0s
+ => => transferring dockerfile: 104B                                                                0.0s
+ => CANCELED [internal] load metadata for docker.io/library/nginx:alpine                            2.4s
+ERROR: failed to solve: Canceled: context canceled
+Filip@filip's macbook pro dev % docker build -t gavro081/my-site:1.0 .
+[+] Building 12.2s (8/8) FINISHED                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                0.0s
+ => => transferring dockerfile: 104B                                                                0.0s
+ => [internal] load metadata for docker.io/library/nginx:alpine                                     2.6s
+ => [auth] library/nginx:pull token for registry-1.docker.io                                        0.0s
+ => [internal] load .dockerignore                                                                   0.0s
+ => => transferring context: 2B                                                                     0.0s
+ => [internal] load build context                                                                   0.0s
+ => => transferring context: 187B                                                                   0.0s
+ => [1/2] FROM docker.io/library/nginx:alpine@sha256:dc48b7a872a79fb541ba5081d320b11b549231bc63ba4  9.3s
+ => => resolve docker.io/library/nginx:alpine@sha256:dc48b7a872a79fb541ba5081d320b11b549231bc63ba4  0.0s
+ => => sha256:e6222a2c0551ea559c3a9de786436992430f2ba3c37f02deeb29a95be167e02e 1.40kB / 1.40kB      0.7s
+...
+Filip@filip's macbook pro dev % docker login
+Authenticating with existing credentials... [Username: gavro081]
+
+i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+Login Succeeded
+Filip@filip's macbook pro dev % docker push gavro081/my-site:1.0
+The push refers to repository [docker.io/gavro081/my-site]
+89b393c16875: Pushed 
+8c53b241d38f: Pushed 
+bb30ab0381f9: Pushed 
+713b0743f876: Pushed 
+e6222a2c0551: Pushed 
+7bc1b30ccd69: Pushing  8.389MB/19.78MB
+cd96b185b287: Pushed 
+c893f715c738: Pushed 
+d17f077ada11: Pushed 
+aa0ad73973d3: Pushed 

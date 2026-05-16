@@ -1,0 +1,16 @@
+Filip@filip's macbook pro dev % kubectl delete deployment hello-deploy -n shield
+deployment.apps "hello-deploy" deleted
+Filip@filip's macbook pro dev % kubectl delete deployment shield-app -n shield
+
+deployment.apps "shield-app" deleted
+Filip@filip's macbook pro dev % kubectl delete namespace shield
+
+namespace "shield" deleted
+Filip@filip's macbook pro dev % k3d cluster delete
+
+INFO[0000] No nodes found for cluster 'k3s-default', nothing to delete. 
+INFO[0000] No clusters found                            
+Filip@filip's macbook pro dev % k3d cluster list
+
+NAME        SERVERS   AGENTS   LOADBALANCER
+mycluster   1/1       0/0      true

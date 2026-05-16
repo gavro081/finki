@@ -1,0 +1,43 @@
+Filip@filip's macbook pro dev % nano hello-deploy.yaml
+Filip@filip's macbook pro dev % cat hello-deploy.yaml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+  namespace: shield
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-deploy
+  template:
+    metadata:
+      labels:
+        app: hello-deploy
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+Filip@filip's macbook pro dev % kubectl apply -f hello-deploy.yaml
+
+deployment.apps/hello-deploy created
+Filip@filip's macbook pro dev % kubectl get deploy hello-deploy -n shield
+
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+hello-deploy   1/1     1            1           3s
+Filip@filip's macbook pro dev % kubectl scale deployment hello-deploy --replicas=4 -n shield
+
+deployment.apps/hello-deploy scaled
+Filip@filip's macbook pro dev % kubectl get deploy hello-deploy -n shield
+
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+hello-deploy   4/4     4            4           9s
+Filip@filip's macbook pro dev % kubectl scale deployment hello-deploy --replicas=1 -n shield
+
+deployment.apps/hello-deploy scaled
+Filip@filip's macbook pro dev % kubectl get deploy hello-deploy -n shield
+
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+hello-deploy   1/1     1            1           16s
