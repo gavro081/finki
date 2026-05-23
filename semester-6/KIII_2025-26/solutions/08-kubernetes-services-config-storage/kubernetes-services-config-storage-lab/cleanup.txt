@@ -1,0 +1,34 @@
+Filip@filip's macbook pro 08-kubernetes-services-config-storage % kubectl delete deployment http-deployment backend-a backend-b
+deployment.apps "backend-a" deleted
+deployment.apps "backend-b" deleted
+Error from server (NotFound): deployments.apps "http-deployment" not found
+Filip@filip's macbook pro 08-kubernetes-services-config-storage % kubectl delete svc http-nodeport-svc backend-a-svc backend-b-svc
+service "backend-a-svc" deleted
+service "backend-b-svc" deleted
+Error from server (NotFound): services "http-nodeport-svc" not found
+Filip@filip's macbook pro 08-kubernetes-services-config-storage % kubectl delete ingress multi-rule-ingress
+ingress.networking.k8s.io "multi-rule-ingress" deleted
+Filip@filip's macbook pro 08-kubernetes-services-config-storage % kubectl delete pod storage-test-pod secret-test-pod
+pod "storage-test-pod" deleted
+pod "secret-test-pod" deleted
+^C%                                                                                                                                          Filip@filip's macbook pro 08-kubernetes-services-config-storage % kubectl delete pvc local-path-pvc
+persistentvolumeclaim "local-path-pvc" deleted
+Filip@filip's macbook pro 08-kubernetes-services-config-storage % kubectl delete secret app-credentials
+
+secret "app-credentials" deleted
+Filip@filip's macbook pro 08-kubernetes-services-config-storage % kubectl get all
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.43.0.1    <none>        443/TCP   25m
+Filip@filip's macbook pro 08-kubernetes-services-config-storage % kubectl get pvc
+No resources found in default namespace.
+Filip@filip's macbook pro 08-kubernetes-services-config-storage % kubectl get ingress
+No resources found in default namespace.
+Filip@filip's macbook pro 08-kubernetes-services-config-storage % kubectl get secret
+No resources found in default namespace.
+Filip@filip's macbook pro 08-kubernetes-services-config-storage % k3d cluster delete mycluster
+INFO[0000] Deleting cluster 'mycluster'                 
+INFO[0000] Deleting cluster network 'k3d-mycluster'     
+INFO[0001] Deleting 1 attached volumes...               
+INFO[0001] Removing cluster details from default kubeconfig... 
+INFO[0001] Removing standalone kubeconfig file (if there is one)... 
+INFO[0001] Successfully deleted cluster mycluster!      

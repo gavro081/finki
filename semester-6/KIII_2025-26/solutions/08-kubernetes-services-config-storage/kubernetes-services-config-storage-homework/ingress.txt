@@ -1,0 +1,119 @@
+Filip@filip's macbook pro dev % cat ingress.yaml
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: strip-ver1
+spec:
+  stripPrefix:
+    prefixes:
+      - /ver1
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: strip-ver2
+spec:
+  stripPrefix:
+    prefixes:
+      - /ver2
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-app-path-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: default-strip-ver1@kubernetescrd,default-strip-ver2@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: localhost
+      http:
+        paths:
+          - path: /ver1
+            pathType: PathPrefix
+            backend:
+              service:
+                name: web-app-v1-svc
+                port:
+                  number: 80
+          - path: /ver2
+            pathType: PathPrefix
+            backend:
+              service:
+                name: web-app-v2-svc
+                port:
+                  number: 80
+---
+# Host-based Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-app-host-ingress
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: ver1.231136.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-app-v1-svc
+                port:
+                  number: 80
+    - host: ver2.231136.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-app-v2-svc
+                port:
+                  number: 80
+
+Filip@filip's macbook pro dev % kubectl apply -f ingress.yaml
+middleware.traefik.containo.us/strip-ver1 created
+middleware.traefik.containo.us/strip-ver2 created
+ingress.networking.k8s.io/web-app-path-ingress created
+ingress.networking.k8s.io/web-app-host-ingress created
+
+Filip@filip's macbook pro dev % kubectl describe ing
+Name:             web-app-host-ingress
+Labels:           <none>
+Namespace:        default
+Address:          172.18.0.2,172.18.0.3
+Ingress Class:    traefik
+Default backend:  <default>
+Rules:
+  Host             Path  Backends
+  ----             ----  --------
+  ver1.231136.com
+                   /   web-app-v1-svc:80 (10.42.0.21:80,10.42.0.22:80,10.42.0.23:80)
+  ver2.231136.com
+                   /   web-app-v2-svc:80 (10.42.0.24:80,10.42.0.25:80,10.42.0.26:80)
+Annotations:       <none>
+Events:
+  Type    Reason  Age   From                        Message
+  ----    ------  ----  ----                        -------
+  Normal  Sync    10s   traefik-ingress-controller  Service load balancer is updating
+
+Name:             web-app-path-ingress
+Labels:           <none>
+Namespace:        default
+Address:          172.18.0.2,172.18.0.3
+Ingress Class:    traefik
+Default backend:  <default>
+Rules:
+  Host       Path  Backends
+  ----       ----  --------
+  localhost
+             /ver1   web-app-v1-svc:80 (10.42.0.21:80,10.42.0.22:80,10.42.0.23:80)
+             /ver2   web-app-v2-svc:80 (10.42.0.24:80,10.42.0.25:80,10.42.0.26:80)
+Annotations:  traefik.ingress.kubernetes.io/router.middlewares:
+                default-strip-ver1@kubernetescrd,default-strip-ver2@kubernetescrd
+Events:
+  Type    Reason  Age   From                        Message
+  ----    ------  ----  ----                        -------
+  Normal  Sync    10s   traefik-ingress-controller  Service load balancer is updating

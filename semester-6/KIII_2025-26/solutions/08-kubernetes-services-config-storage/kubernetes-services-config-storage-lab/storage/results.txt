@@ -1,0 +1,8 @@
+Filip@filip's macbook pro storage % kubectl get pvc local-path-pvc
+NAME             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+local-path-pvc   Bound    pvc-5a90feda-81bb-46fc-997d-60cda96d9513   256Mi      RWO            local-path     <unset>                 28s
+Filip@filip's macbook pro storage % kubectl get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                    STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+pvc-5a90feda-81bb-46fc-997d-60cda96d9513   256Mi      RWO            Delete           Bound    default/local-path-pvc   local-path     <unset>                          24s
+Filip@filip's macbook pro storage % kubectl exec storage-test-pod -- sh -c "echo 'hello from persistent storage' > /data/test.txt && cat /data/test.txt"
+hello from persistent storage
