@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art Gallery</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+</head>
+<body style="background-color: #f5f0e8;">
+<div style="background: url('{% static 'main_header_bg-copyright.jpg' %}') center/cover no-repeat; height: 400px;">
+    <div>
+        <img src="{% static 'logo.png' %}" width="200">
+        <div style="border: .5px solid gray"></div>
+    </div>
+    <h1 class="text-center text-white fw-bold" style="margin-top: 150px;">Add</h1>
+</div>
+
+<div class="container">
+    <div class="col-4" style="margin-block: 100px">
+        <form>
+        {{ form.as_p }}
+            <button type="submit" class="btn rounded-pill px-5 py-2" style="background-color: #dc8c15; margin-top: 50px">Save</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
