@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property Rental System</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"/>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+</head>
+<body>
+    <nav class="justify-content-between align-items-center" style="display: flex; margin-inline: 150px">
+        <div>House M5</div>
+        <div style="display: flex; gap: 30px; align-items: center; justify-content: center">
+            <p class="mt-3">About</p>
+            <p class="mt-3">Projects</p>
+            <p class="mt-3">Services</p>
+            <p class="mt-3">Contacts</p>
+            <button class="btn btn-dark">Contact us</button>
+        </div>
+    </nav>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6 my-auto">
+                <h1>Architecture</h1>
+                <h1>Bureau</h1>
+            </div>
+            <div class="col-6">
+                <img src="{% static 'home1.jpg' %}" >
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+                <img src="{% static 'home2.jpg' %}" >
+            </div>
+            <div class="col-6 my-auto">
+                <p>Lorem ipsum sit dolor amet drn drn drn  drn drn drn drn drn drn drn drn drn drn drn drn
+                drn drn drn drn drn drn drn drn drn drndrn drn drn drn drn drn drn drn drn drndrn drn drn drn drn drn drn drn drn drn
+                    drn drn drn drn drn drn drn drn drn drn
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="text-center mt-5">We offer variety of projects</h1>
+    <div class="container mb-lg-3" style="margin-top: 60px">
+        <div class="row">
+            <div class="col-4 pb-3 text-center" style="border-bottom: 2px solid black">All Houses</div>
+            <div class="col-4 text-center" style="border-bottom: 2px solid gray; color: gray">Stone Houses</div>
+            <div class="col-4 text-center" style="border-bottom: 2px solid gray; color: gray">Frame Houses</div>
+        </div>
+    </div>
+
+        <div class="container" style="margin-bottom: 150px">
+        <div class="row justify-content-between">
+            {% for p in properties %}
+                <div class="col-3 card p-0" style="border: none; background-color: #efefef; width: 400px">
+                <img class="card-img-top" src="{{ p.image.url }}">
+                <div class="card-body" style="padding: 35px">
+                    <h2 class="mb-2">{{ p.name }}</h2>
+                    <div style="display: flex; justify-content: space-between">
+                        <p>Area</p>
+                        <p>{{ p.area }} sqm</p>
+                    </div>
+                    <hr>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px">
+                        <p>Price</p>
+                        <p>{{ p.total_price|default:0 }} $</p>
+                    </div>
+                    <a href="/edit/{{ p.id }}" class="btn btn-dark">Edit</a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{#    <div class="container" style="margin-bottom: 150px">#}
+{#        <div class="row justify-content-between">#}
+{#            <div class="col-3 card p-0" style="border: none; background-color: #efefef; width: 400px">#}
+{#                <img class="card-img-top" src="{% static 'home1.jpg' %}">#}
+{#                <div class="card-body" style="padding: 35px">#}
+{#                    <h2 class="mb-2">House 1</h2>#}
+{#                    <div style="display: flex; justify-content: space-between">#}
+{#                        <p>Area</p>#}
+{#                        <p>123.54 sqm</p>#}
+{#                    </div>#}
+{#                    <hr>#}
+{#                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px">#}
+{#                        <p>Price</p>#}
+{#                        <p>5 423 $</p>#}
+{#                    </div>#}
+{#                    <button class="btn btn btn-dark">Edit</button>#}
+{#                </div>#}
+{#            </div>#}
+{#             <div class="col-3 card p-0" style="border: none; background-color: #efefef; width: 400px">#}
+{#                <img class="card-img-top" src="{% static 'home1.jpg' %}">#}
+{#                <div class="card-body" style="padding: 35px">#}
+{#                    <h2 class="mb-2">House 1</h2>#}
+{#                    <div style="display: flex; justify-content: space-between">#}
+{#                        <p>Area</p>#}
+{#                        <p>123.54 sqm</p>#}
+{#                    </div>#}
+{#                    <hr>#}
+{#                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px">#}
+{#                        <p>Price</p>#}
+{#                        <p>5 423 $</p>#}
+{#                    </div>#}
+{#                    <button class="btn btn btn-dark">Edit</button>#}
+{#                </div>#}
+{#            </div>#}
+{#             <div class="col-3 card p-0" style="border: none; background-color: #efefef; width: 400px">#}
+{#                <img class="card-img-top" src="{% static 'home1.jpg' %}">#}
+{#                <div class="card-body" style="padding: 35px">#}
+{#                    <h2 class="mb-2">House 1</h2>#}
+{#                    <div style="display: flex; justify-content: space-between">#}
+{#                        <p>Area</p>#}
+{#                        <p>123.54 sqm</p>#}
+{#                    </div>#}
+{#                    <hr>#}
+{#                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px">#}
+{#                        <p>Price</p>#}
+{#                        <p>5 423 $</p>#}
+{#                    </div>#}
+{#                    <button class="btn btn btn-dark">Edit</button>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
+</body>
+</html>
