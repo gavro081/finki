@@ -35,3 +35,17 @@ All tracked exercises for my undergrad courses at FCSE.
 - [Service-Oriented Architectures](https://github.com/gavro081/finki/tree/main/semester-6/SOA_2025-26)
 - [Continuous Integration and Delivery](https://github.com/gavro081/finki/tree/main/semester-6/KIII_2025-26)
 - [Advanced Databases](https://github.com/gavro081/finki/tree/main/semester-6/AdvDB_2025-26)
+
+
+## How to pull only a specific folder (course, exercise, lab ...)
+```bash
+# 1. clone the repository without downloading any files yet
+git clone --filter=blob:none --sparse https://github.com/gavro081/finki.git
+cd finki
+
+# 2. add the specific subdirectory you want to pull
+git sparse-checkout add path/to/folder
+
+# for example
+# git sparse-checkout add semester-5/VP_2025-26/june2025-g1/
+```
